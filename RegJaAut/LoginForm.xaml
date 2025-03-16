@@ -7,9 +7,7 @@
         <VerticalStackLayout Padding="20" Spacing="20">
             <Label Text="Logi sisse" FontSize="30" HorizontalOptions="Center"/>
 
-            <Label Text="Email:" FontSize="24"/>
-            <Entry Placeholder="Sisestage oma email" Keyboard="Email" FontSize="24"/>
-
+            <Entry x:Name="EmailEntry" Placeholder="Sisestage oma email" Keyboard="Email" FontSize="24"/>
             <Label Text="Parool:" FontSize="24"/>
             <HorizontalStackLayout>
                 <Entry x:Name="PasswordEntry" Placeholder="Sisestage oma parool" IsPassword="True" FontSize="24" WidthRequest="340"/>
@@ -22,7 +20,8 @@
                 </Button>
             </HorizontalStackLayout>
 
-            <Button Text="Logi sisse" BackgroundColor="Blue" TextColor="White" FontSize="24" HorizontalOptions="Center"/>
+            <Button Text="Logi sisse" BackgroundColor="Blue" TextColor="White" FontSize="24" 
+                HorizontalOptions="Center" Clicked="LoginBtn_Clicked"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

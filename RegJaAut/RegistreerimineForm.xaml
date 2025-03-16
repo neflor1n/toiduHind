@@ -9,10 +9,10 @@
             <Label Text="Registreerimine" FontSize="30" HorizontalOptions="Center"/>
 
             <Label Text="Eesnimi:" FontSize="24"/>
-            <Entry Placeholder="Sisesta oma nimi" FontSize="24"/>
+            <Entry x:Name="NameEntry" Placeholder="Sisesta oma nimi" FontSize="24"/>
 
             <Label Text="Email:" FontSize="24"/>
-            <Entry Placeholder="Sisesta oma email address" Keyboard="Email" FontSize="24"/>
+            <Entry x:Name="EmailEntry" Placeholder="Sisesta oma email address" Keyboard="Email" FontSize="24"/>
 
             <Label Text="Parool:" FontSize="24"/>
             <HorizontalStackLayout>
@@ -27,21 +27,21 @@
             </HorizontalStackLayout>
 
             <Label Text="Kinnitage parool" FontSize="24"/>
-            <Entry Placeholder="Kinnitage parool" IsPassword="True" FontSize="24"/>
+            <Entry x:Name="ConfPasswordEntry" Placeholder="Kinnitage parool" IsPassword="True" FontSize="24"/>
 
             <HorizontalStackLayout>
-                <CheckBox />
+                <CheckBox x:Name="kasutajatingimust"/>
                 <Label Text="Ja nõustute kasutajatingimustega" VerticalOptions="Center" FontSize="16"/>
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
-                <Button x:Name="regBtn" Text="Registreeruge" BackgroundColor="Blue" TextColor="White" FontSize="24"/>
+                <Button x:Name="regBtn" Text="Registreeruge" BackgroundColor="Blue" TextColor="White" FontSize="24" Clicked="regBtn_Clicked"/>
             </HorizontalStackLayout>
             
             <VerticalStackLayout Spacing="5" HorizontalOptions="Center" Padding="0, 50, 0, 0">
-                
+
                 <Label Text="Account on juba tehtud?" FontSize="16" TextColor="Gray" HorizontalOptions="Center"/>
-                <Button x:Name="logBtn" Text="Logi sisse" BackgroundColor="Blue" TextColor="White" FontSize="24" HorizontalOptions="Center"/>
+                <Button x:Name="logBtn" Text="Logi sisse" BackgroundColor="Blue" TextColor="White" FontSize="24" Clicked="logBtn_Clicked"/>
             </VerticalStackLayout>
             
         </VerticalStackLayout>

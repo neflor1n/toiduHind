@@ -7,6 +7,7 @@ public partial class AvaLeht : ContentPage
 	public AvaLeht()
 	{
 		InitializeComponent();
+
 	}
 
     private async void JatkakeIlmaReg_Clicked(object sender, EventArgs e)
