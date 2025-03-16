@@ -9,7 +9,7 @@ public partial class AvaLeht : ContentPage
 		InitializeComponent();
 
 	}
-
+    //Langerbum was heart of this project
     private async void JatkakeIlmaReg_Clicked(object sender, EventArgs e)
     {
 
