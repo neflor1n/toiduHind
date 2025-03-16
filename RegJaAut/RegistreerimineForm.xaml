@@ -3,20 +3,52 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="toiduHind.RegJaAut.RegistreerimineForm"
              Title="RegistreerimineForm">
-    
+
+    <!-- Define Styles for the Controls -->
+    <ContentPage.Resources>
+        <Style x:Key="BlueButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#007BFF"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="CornerRadius" Value="30"/>
+            <Setter Property="HeightRequest" Value="50"/>
+        </Style>
+
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="TextColor" Value="Black"/>
+        </Style>
+
+        <Style x:Key="EntryStyle" TargetType="Entry">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="HeightRequest" Value="50"/>
+        </Style>
+
+        <Style x:Key="CheckBoxStyle" TargetType="CheckBox">
+            <Setter Property="Color" Value="#007BFF"/>
+        </Style>
+    </ContentPage.Resources>
+
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="10">
-            <Label Text="Registreerimine" FontSize="30" HorizontalOptions="Center"/>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Registreerimine" FontSize="30" HorizontalOptions="Center" TextColor="#007BFF"/>
 
-            <Label Text="Eesnimi:" FontSize="24"/>
-            <Entry x:Name="NameEntry" Placeholder="Sisesta oma nimi" FontSize="24"/>
+            <Label Text="Eesnimi:" Style="{StaticResource LabelStyle}" />
+            <Frame BorderColor="#007BFF" Padding="0" CornerRadius="10">
+                <Entry x:Name="NameEntry" Placeholder="Sisesta oma nimi" Style="{StaticResource EntryStyle}" BackgroundColor="White"/>
+            </Frame>
 
-            <Label Text="Email:" FontSize="24"/>
-            <Entry x:Name="EmailEntry" Placeholder="Sisesta oma email address" Keyboard="Email" FontSize="24"/>
+            <Label Text="Email:" Style="{StaticResource LabelStyle}" />
+            <Frame BorderColor="#007BFF" Padding="0" CornerRadius="10">
+                <Entry x:Name="EmailEntry" Placeholder="Sisesta oma email address" Keyboard="Email" Style="{StaticResource EntryStyle}" BackgroundColor="White"/>
+            </Frame>
 
-            <Label Text="Parool:" FontSize="24"/>
+            <Label Text="Parool:" Style="{StaticResource LabelStyle}" />
             <HorizontalStackLayout>
-                <Entry x:Name="PasswordEntry" Placeholder="Loo parool" IsPassword="True" FontSize="24" WidthRequest="340"/>
+                <Frame BorderColor="#007BFF" Padding="0" CornerRadius="10">
+                    <Entry x:Name="PasswordEntry" Placeholder="Loo parool" IsPassword="True" Style="{StaticResource EntryStyle}" BackgroundColor="White" WidthRequest="340"/>
+                </Frame>
                 <Button x:Name="ShowPass" Clicked="OnTogglePasswordVisibility" BackgroundColor="Transparent">
                     <Button.ImageSource>
                         <FileImageSource File="closed_eye.png"/>
@@ -26,24 +58,25 @@
                 </Button>
             </HorizontalStackLayout>
 
-            <Label Text="Kinnitage parool" FontSize="24"/>
-            <Entry x:Name="ConfPasswordEntry" Placeholder="Kinnitage parool" IsPassword="True" FontSize="24"/>
+            <Label Text="Kinnitage parool" Style="{StaticResource LabelStyle}" />
+            <Frame BorderColor="#007BFF" Padding="0" CornerRadius="10">
+                <Entry x:Name="ConfPasswordEntry" Placeholder="Kinnitage parool" IsPassword="True" Style="{StaticResource EntryStyle}" BackgroundColor="White"/>
+            </Frame>
 
             <HorizontalStackLayout>
-                <CheckBox x:Name="kasutajatingimust"/>
-                <Label Text="Ja nõustute kasutajatingimustega" VerticalOptions="Center" FontSize="16"/>
+                <CheckBox x:Name="kasutajatingimust" Style="{StaticResource CheckBoxStyle}"/>
+                <Label Text="Ja nõustute kasutajatingimustega" VerticalOptions="Center" FontSize="16" TextColor="Gray"/>
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
-                <Button x:Name="regBtn" Text="Registreeruge" BackgroundColor="Blue" TextColor="White" FontSize="24" Clicked="regBtn_Clicked"/>
+                <Button x:Name="regBtn" Text="Registreeruge" Style="{StaticResource BlueButtonStyle}" Clicked="regBtn_Clicked"/>
             </HorizontalStackLayout>
-            
-            <VerticalStackLayout Spacing="5" HorizontalOptions="Center" Padding="0, 50, 0, 0">
 
+            <VerticalStackLayout Spacing="5" HorizontalOptions="Center" Padding="0, 50, 0, 0">
                 <Label Text="Account on juba tehtud?" FontSize="16" TextColor="Gray" HorizontalOptions="Center"/>
-                <Button x:Name="logBtn" Text="Logi sisse" BackgroundColor="Blue" TextColor="White" FontSize="24" Clicked="logBtn_Clicked"/>
+                <Button x:Name="logBtn" Text="Logi sisse" Style="{StaticResource BlueButtonStyle}" Clicked="logBtn_Clicked"/>
             </VerticalStackLayout>
-            
+
         </VerticalStackLayout>
     </ScrollView>
 
