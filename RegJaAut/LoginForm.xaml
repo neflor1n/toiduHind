@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="toiduHind.RegJaAut.LoginForm"
+             Title="Login Form">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Label Text="Logi sisse" FontSize="30" HorizontalOptions="Center"/>
+
+            <Label Text="Email:" FontSize="24"/>
+            <Entry Placeholder="Sisestage oma email" Keyboard="Email" FontSize="24"/>
+
+            <Label Text="Parool:" FontSize="24"/>
+            <HorizontalStackLayout>
+                <Entry x:Name="PasswordEntry" Placeholder="Sisestage oma parool" IsPassword="True" FontSize="24" WidthRequest="340"/>
+                <Button x:Name="ShowPass" Clicked="OnTogglePasswordVisibility" BackgroundColor="Transparent">
+                    <Button.ImageSource>
+                        <FileImageSource File="closed_eye.png"/>
+                    </Button.ImageSource>
+                    <Button.WidthRequest>60</Button.WidthRequest>
+                    <Button.HeightRequest>60</Button.HeightRequest>
+                </Button>
+            </HorizontalStackLayout>
+
+            <Button Text="Logi sisse" BackgroundColor="Blue" TextColor="White" FontSize="24" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

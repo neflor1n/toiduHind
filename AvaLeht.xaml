@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="toiduHind.AvaLeht"
+             Title="AvaLeht">
+    <VerticalStackLayout VerticalOptions="CenterAndExpand" Padding="0, 30, 0, 0">
+        <VerticalStackLayout x:Name="TerviseksLbl" Spacing="20" Padding="0, 0, 0, 150">
+            <Label Text="Tere Toiduhindist!" FontSize="30" HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Padding="0, 0, 0, 40">
+            <Label Text="On juba konto?" FontSize="18" TextColor="LightGray" HorizontalOptions="Center"/>
+            <Button x:Name="logBtn" Text="Logi sisse" HorizontalOptions="Center" FontSize="18" BackgroundColor="Blue" Clicked="logBtn_Clicked"/>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Padding="0, 0, 0, 40">
+            <Label Text="Ei ole konto?" FontSize="18" TextColor="LightGray" HorizontalOptions="Center"/>
+            <Button x:Name="RegBtn" Text="Registreerima" FontSize="18" HorizontalOptions="Center" BackgroundColor="Blue" Clicked="RegBtn_Clicked"/>
+        </VerticalStackLayout>
+        
+        <VerticalStackLayout Padding="0, 60, 0, 0">
+            <Button x:Name="JatkakeIlmaReg" Text="Jätkake ilma registraarimiseta" HorizontalOptions="Center" FontSize="18" BackgroundColor="Blue"/>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
