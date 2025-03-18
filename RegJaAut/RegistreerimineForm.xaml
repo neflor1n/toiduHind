@@ -3,64 +3,74 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="toiduHind.RegJaAut.RegistreerimineForm"
              Title="RegistreerimineForm">
-
-    <!-- Define Styles for the Controls -->
     <ContentPage.Resources>
-        <Style x:Key="BlueButtonStyle" TargetType="Button">
-            <Setter Property="BackgroundColor" Value="#007BFF"/>
+        <!-- Стиль кнопок -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#333333"/>
             <Setter Property="TextColor" Value="White"/>
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="CornerRadius" Value="30"/>
             <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="Shadow" Value="3,3,6,0.3"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
 
-        <Style x:Key="LabelStyle" TargetType="Label">
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="TextColor" Value="Black"/>
-        </Style>
-
+        <!-- Стиль для ввода -->
         <Style x:Key="EntryStyle" TargetType="Entry">
             <Setter Property="FontSize" Value="24"/>
-            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="BackgroundColor" Value="#333333"/>
             <Setter Property="HeightRequest" Value="50"/>
         </Style>
 
+        <!-- Стиль для заголовков -->
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+
+        <!-- Стиль для чекбоксов -->
         <Style x:Key="CheckBoxStyle" TargetType="CheckBox">
-            <Setter Property="Color" Value="#007BFF"/>
+            <Setter Property="Color" Value="White"/>
         </Style>
     </ContentPage.Resources>
 
-    <ScrollView>
+    <ScrollView BackgroundColor="#1A1A1A">
         <VerticalStackLayout Padding="20" Spacing="15">
-            <Label Text="Registreerimine" FontSize="30" HorizontalOptions="Center" TextColor="#007BFF"/>
+            <Label Text="Registreerimine" FontSize="30" HorizontalOptions="Center" TextColor="White"/>
 
             <Label Text="Eesnimi:" Style="{StaticResource LabelStyle}" />
-            <Frame BorderColor="#007BFF" Padding="0" CornerRadius="10">
-                <Entry x:Name="NameEntry" Placeholder="Sisesta oma nimi" Style="{StaticResource EntryStyle}" BackgroundColor="White"/>
+
+            <!-- Использование Frame для скругленных углов -->
+            <Frame BorderColor="White" BackgroundColor="#333333" CornerRadius="25" Padding="0">
+                <Entry x:Name="NameEntry" Placeholder="Sisesta oma nimi" Style="{StaticResource EntryStyle}"/>
             </Frame>
 
             <Label Text="Email:" Style="{StaticResource LabelStyle}" />
-            <Frame BorderColor="#007BFF" Padding="0" CornerRadius="10">
-                <Entry x:Name="EmailEntry" Placeholder="Sisesta oma email address" Keyboard="Email" Style="{StaticResource EntryStyle}" BackgroundColor="White"/>
+
+            <Frame BorderColor="White" BackgroundColor="#333333" CornerRadius="25" Padding="0">
+                <Entry x:Name="EmailEntry" Placeholder="Sisesta oma email address" Keyboard="Email" Style="{StaticResource EntryStyle}"/>
             </Frame>
 
             <Label Text="Parool:" Style="{StaticResource LabelStyle}" />
+
             <HorizontalStackLayout>
-                <Frame BorderColor="#007BFF" Padding="0" CornerRadius="10">
-                    <Entry x:Name="PasswordEntry" Placeholder="Loo parool" IsPassword="True" Style="{StaticResource EntryStyle}" BackgroundColor="White" WidthRequest="340"/>
+                <Frame BorderColor="White" BackgroundColor="#333333" CornerRadius="25" Padding="0">
+                    <Entry x:Name="PasswordEntry" Placeholder="Loo parool" IsPassword="True" Style="{StaticResource EntryStyle}" WidthRequest="340"/>
                 </Frame>
-                <Button x:Name="ShowPass" Clicked="OnTogglePasswordVisibility" BackgroundColor="Transparent">
+                <Button x:Name="ShowPass" Clicked="OnTogglePasswordVisibility" BackgroundColor="Transparent" WidthRequest="60" HeightRequest="60">
                     <Button.ImageSource>
                         <FileImageSource File="closed_eye.png"/>
                     </Button.ImageSource>
-                    <Button.WidthRequest>60</Button.WidthRequest>
-                    <Button.HeightRequest>60</Button.HeightRequest>
                 </Button>
             </HorizontalStackLayout>
 
             <Label Text="Kinnitage parool" Style="{StaticResource LabelStyle}" />
-            <Frame BorderColor="#007BFF" Padding="0" CornerRadius="10">
-                <Entry x:Name="ConfPasswordEntry" Placeholder="Kinnitage parool" IsPassword="True" Style="{StaticResource EntryStyle}" BackgroundColor="White"/>
+
+            <Frame BorderColor="White" BackgroundColor="#333333" CornerRadius="25" Padding="0">
+                <Entry x:Name="ConfPasswordEntry" Placeholder="Kinnitage parool" IsPassword="True" Style="{StaticResource EntryStyle}" WidthRequest="340"/>
             </Frame>
 
             <HorizontalStackLayout>
@@ -68,16 +78,12 @@
                 <Label Text="Ja nõustute kasutajatingimustega" VerticalOptions="Center" FontSize="16" TextColor="Gray"/>
             </HorizontalStackLayout>
 
-            <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
-                <Button x:Name="regBtn" Text="Registreeruge" Style="{StaticResource BlueButtonStyle}" Clicked="regBtn_Clicked"/>
-            </HorizontalStackLayout>
+            <Button x:Name="regBtn" Text="Registreeruge" Style="{StaticResource ButtonStyle}" Clicked="regBtn_Clicked"/>
 
             <VerticalStackLayout Spacing="5" HorizontalOptions="Center" Padding="0, 50, 0, 0">
-                <Label Text="Account on juba tehtud?" FontSize="16" TextColor="Gray" HorizontalOptions="Center"/>
-                <Button x:Name="logBtn" Text="Logi sisse" Style="{StaticResource BlueButtonStyle}" Clicked="logBtn_Clicked"/>
+                <Label Text="Account on juba tehtud?" FontSize="16" TextColor="Gray"/>
+                <Button x:Name="logBtn" Text="Logi sisse" Style="{StaticResource ButtonStyle}" Clicked="logBtn_Clicked"/>
             </VerticalStackLayout>
-
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

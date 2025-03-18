@@ -3,23 +3,67 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="toiduHind.AvaLeht"
              Title="AvaLeht">
-    <VerticalStackLayout VerticalOptions="CenterAndExpand" Padding="0, 30, 0, 0">
-        <VerticalStackLayout x:Name="TerviseksLbl" Spacing="20" Padding="0, 0, 0, 150">
-            <Label Text="Tere Toiduhindist!" FontSize="30" HorizontalOptions="Center" />
+    <ContentPage.Resources>
+        <!-- Стиль кнопок -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#333333"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="CornerRadius" Value="30"/>
+            <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="Shadow" Value="3,3,6,0.3"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+
+        <!-- Стиль заголовков -->
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+
+        <!-- Стиль подзаголовков -->
+        <Style x:Key="SubtitleLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="TextColor" Value="LightGray"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="FontAttributes" Value="Italic"/>
+        </Style>
+
+        <!-- Стиль для внешнего контейнера -->
+        <Style x:Key="VerticalStackLayoutStyle" TargetType="VerticalStackLayout">
+            <Setter Property="Spacing" Value="20"/>
+            <Setter Property="Padding" Value="0, 20, 0, 20"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <!-- Градиентный фон -->
+    <Grid BackgroundColor="#1A1A1A">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <VerticalStackLayout Grid.Row="0" VerticalOptions="CenterAndExpand" Style="{StaticResource VerticalStackLayoutStyle}">
+            <Label Text="Tere Toiduhindist!" Style="{StaticResource LabelStyle}"/>
         </VerticalStackLayout>
 
-        <VerticalStackLayout Padding="0, 0, 0, 40">
-            <Label Text="On juba konto?" FontSize="18" TextColor="LightGray" HorizontalOptions="Center"/>
-            <Button x:Name="logBtn" Text="Logi sisse" HorizontalOptions="Center" FontSize="18" BackgroundColor="Blue" Clicked="logBtn_Clicked"/>
+        <VerticalStackLayout Grid.Row="1" Padding="0, 0, 0, 40">
+            <Label Text="On juba konto?" Style="{StaticResource SubtitleLabelStyle}"/>
+            <Button x:Name="logBtn" Text="Logi sisse" Style="{StaticResource ButtonStyle}" Clicked="logBtn_Clicked"/>
         </VerticalStackLayout>
 
-        <VerticalStackLayout Padding="0, 0, 0, 40">
-            <Label Text="Ei ole konto?" FontSize="18" TextColor="LightGray" HorizontalOptions="Center"/>
-            <Button x:Name="RegBtn" Text="Registreerima" FontSize="18" HorizontalOptions="Center" BackgroundColor="Blue" Clicked="RegBtn_Clicked"/>
+        <VerticalStackLayout Grid.Row="2" Padding="0, 0, 0, 40">
+            <Label Text="Ei ole konto?" Style="{StaticResource SubtitleLabelStyle}"/>
+            <Button x:Name="RegBtn" Text="Registreerima" Style="{StaticResource ButtonStyle}" Clicked="RegBtn_Clicked"/>
         </VerticalStackLayout>
-        
-        <VerticalStackLayout Padding="0, 60, 0, 0">
-            <Button x:Name="JatkakeIlmaReg" Text="Jätkake ilma registraarimiseta" HorizontalOptions="Center" FontSize="18" BackgroundColor="Blue"/>
+
+        <VerticalStackLayout Grid.Row="3" Padding="0, 60, 0, 0">
+            <Button x:Name="JatkakeIlmaReg" Text="Jätkake ilma registraarimiseta" Style="{StaticResource ButtonStyle}"/>
         </VerticalStackLayout>
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

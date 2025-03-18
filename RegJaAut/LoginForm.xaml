@@ -3,14 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="toiduHind.RegJaAut.LoginForm"
              Title="Login Form">
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="20">
-            <Label Text="Logi sisse" FontSize="30" HorizontalOptions="Center"/>
+    <ContentPage.Resources>
+        <!-- Стиль кнопок -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#333333"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="CornerRadius" Value="30"/>
+            <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="Shadow" Value="3,3,6,0.3"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
 
-            <Entry x:Name="EmailEntry" Placeholder="Sisestage oma email" Keyboard="Email" FontSize="24"/>
-            <Label Text="Parool:" FontSize="24"/>
+        <!-- Стиль для ввода -->
+        <Style x:Key="EntryStyle" TargetType="Entry">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="BackgroundColor" Value="#333333"/>
+            <Setter Property="HeightRequest" Value="50"/>
+        </Style>
+
+        <!-- Стиль для заголовков -->
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView BackgroundColor="#1A1A1A">
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Label Text="Logi sisse" Style="{StaticResource LabelStyle}"/>
+
+            <!-- Использование Frame для скругленных углов -->
+            <Frame BorderColor="White" BackgroundColor="#333333" CornerRadius="25" Padding="0">
+                <Entry x:Name="EmailEntry" Placeholder="Sisestage oma email" Keyboard="Email" Style="{StaticResource EntryStyle}"/>
+            </Frame>
+
+            <Label Text="Parool:" Style="{StaticResource LabelStyle}"/>
+
             <HorizontalStackLayout>
-                <Entry x:Name="PasswordEntry" Placeholder="Sisestage oma parool" IsPassword="True" FontSize="24" WidthRequest="340"/>
+                <Frame BorderColor="White" BackgroundColor="#333333" CornerRadius="25" Padding="0">
+                    <Entry x:Name="PasswordEntry" Placeholder="Sisestage oma parool" IsPassword="True" Style="{StaticResource EntryStyle}" WidthRequest="340"/>
+                </Frame>
                 <Button x:Name="ShowPass" Clicked="OnTogglePasswordVisibility" BackgroundColor="Transparent">
                     <Button.ImageSource>
                         <FileImageSource File="closed_eye.png"/>
@@ -20,8 +57,7 @@
                 </Button>
             </HorizontalStackLayout>
 
-            <Button Text="Logi sisse" BackgroundColor="Blue" TextColor="White" FontSize="24" 
-                HorizontalOptions="Center" Clicked="LoginBtn_Clicked"/>
+            <Button Text="Logi sisse" Style="{StaticResource ButtonStyle}" Clicked="LoginBtn_Clicked"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
