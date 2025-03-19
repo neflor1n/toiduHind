@@ -18,7 +18,7 @@
 
         <!-- Стиль для ввода -->
         <Style x:Key="EntryStyle" TargetType="Entry">
-            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontSize" Value="20"/>
             <Setter Property="TextColor" Value="White"/>
             <Setter Property="BackgroundColor" Value="#333333"/>
             <Setter Property="HeightRequest" Value="50"/>
@@ -58,7 +58,7 @@
 
             <HorizontalStackLayout>
                 <Frame BorderColor="White" BackgroundColor="#333333" CornerRadius="25" Padding="0">
-                    <Entry x:Name="PasswordEntry" Placeholder="Loo parool" IsPassword="True" Style="{StaticResource EntryStyle}" WidthRequest="340"/>
+                    <Entry x:Name="PasswordEntry" Placeholder="Loo parool" IsPassword="True" Style="{StaticResource EntryStyle}" WidthRequest="300"/>
                 </Frame>
                 <Button x:Name="ShowPass" Clicked="OnTogglePasswordVisibility" BackgroundColor="Transparent" WidthRequest="60" HeightRequest="60">
                     <Button.ImageSource>

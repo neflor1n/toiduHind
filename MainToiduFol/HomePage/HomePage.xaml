@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="toiduHind.MainToiduFol.HomePage.HomePage"
+             Title="HomePage"
+             BackgroundColor="#1E1E1E">
+
+    <Grid>
+        <!-- Основной контент страницы -->
+        <VerticalStackLayout Padding="20">
+            <Button x:Name="MenuButton"
+                    Text="☰ Menu"
+                    BackgroundColor="#444444"
+                    TextColor="White"
+                    FontSize="18"
+                    CornerRadius="8"
+                    HeightRequest="50"
+                    Clicked="OnMenuButtonClicked"
+                    HorizontalOptions="Start"/>
+
+            <Label Text="Tere ToiduHinnast!" 
+                   TextColor="White" 
+                   FontSize="26" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center"
+                   Padding="10"/>
+        </VerticalStackLayout>
+
+        <!-- Затемненный фон при открытом меню -->
+        <BoxView x:Name="Overlay"
+                 BackgroundColor="Black"
+                 Opacity="0"
+                 IsVisible="False">
+            <BoxView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnOverlayTapped"/>
+            </BoxView.GestureRecognizers>
+        </BoxView>
+
+        <!-- Боковое меню -->
+        <Frame x:Name="SlidingMenu"
+               BackgroundColor="#292929"
+               Padding="15"
+               CornerRadius="0"
+               WidthRequest="250"
+               VerticalOptions="FillAndExpand"
+               TranslationX="-250"
+               HorizontalOptions="Start"
+               Opacity="0.95"
+               HasShadow="True"
+               Shadow="4,4,10,Black">
+
+            <VerticalStackLayout Spacing="15">
+                <!-- Заголовок меню -->
+                <Label Text="Kategooriad" 
+                       TextColor="White" 
+                       FontAttributes="Bold"
+                       FontSize="22"
+                       HorizontalOptions="Center"
+                       Padding="0, 10, 0, 10"/>
+
+                <BoxView HeightRequest="1" BackgroundColor="Gray" Opacity="0.5"/>
+
+                <!-- Категории с иконками -->
+                <Button Text="🥩 Lihad" BackgroundColor="Transparent" TextColor="White" FontSize="18" Clicked="OnOptionSelected"/>
+                <Button Text="🐟 Kalad" BackgroundColor="Transparent" TextColor="White" FontSize="18" Clicked="OnOptionSelected"/>
+                <Button Text="🥚 Munad" BackgroundColor="Transparent" TextColor="White" FontSize="18" Clicked="OnOptionSelected"/>
+            </VerticalStackLayout>
+
+        </Frame>
+
+    </Grid>
+
+</ContentPage>

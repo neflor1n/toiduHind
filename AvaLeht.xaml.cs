@@ -11,8 +11,8 @@ public partial class AvaLeht : ContentPage
 	private async void JatkakeIlmaReg_Clicked(object sender, EventArgs e)
 	{
 	
-		//Button btn = sender as Button;
-		//await Navigation.PushAsync(new );
+		Button btn = sender as Button;
+		await Navigation.PushAsync(new MainToiduFol.HomePage.HomePage());
 	}
 	
 	private async void RegBtn_Clicked(object sender, EventArgs e)

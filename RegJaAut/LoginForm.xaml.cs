@@ -24,19 +24,19 @@ public partial class LoginForm : ContentPage
 
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
-            await DisplayAlert("Ошибка", "Заполните все поля!", "OK");
+            await DisplayAlert("Viga", "Palun tдitke kхik vдljad!", "OK");
             return;
         }
 
         var user = await _database.GetUserByEmail(email);
-        if (user != null && user.Password == password) 
+        if (user != null && user.Password == password)
         {
-            await DisplayAlert("Успех", "Вход выполнен!", "OK");
+            await DisplayAlert("Хnnestus", "Sisselogimine хnnestus!", "OK");
             await Navigation.PushAsync(new AvaLeht());
         }
         else
         {
-            await DisplayAlert("Ошибка", "Неверный email или пароль", "OK");
+            await DisplayAlert("Viga", "Vale e-posti aadress vхi parool", "OK");
         }
     }
 }

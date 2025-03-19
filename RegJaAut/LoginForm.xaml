@@ -8,7 +8,7 @@
         <Style x:Key="ButtonStyle" TargetType="Button">
             <Setter Property="BackgroundColor" Value="#333333"/>
             <Setter Property="TextColor" Value="White"/>
-            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontSize" Value="22"/>
             <Setter Property="CornerRadius" Value="30"/>
             <Setter Property="HeightRequest" Value="50"/>
             <Setter Property="Shadow" Value="3,3,6,0.3"/>
@@ -18,7 +18,7 @@
 
         <!-- Стиль для ввода -->
         <Style x:Key="EntryStyle" TargetType="Entry">
-            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontSize" Value="20"/>
             <Setter Property="TextColor" Value="White"/>
             <Setter Property="BackgroundColor" Value="#333333"/>
             <Setter Property="HeightRequest" Value="50"/>
@@ -37,8 +37,10 @@
         <VerticalStackLayout Padding="20" Spacing="20">
             <Label Text="Logi sisse" Style="{StaticResource LabelStyle}"/>
 
+            <Label Text="Email:" Style="{StaticResource LabelStyle}" Padding="0, 30,0,0"/>
             <!-- Использование Frame для скругленных углов -->
             <Frame BorderColor="White" BackgroundColor="#333333" CornerRadius="25" Padding="0">
+
                 <Entry x:Name="EmailEntry" Placeholder="Sisestage oma email" Keyboard="Email" Style="{StaticResource EntryStyle}"/>
             </Frame>
 
@@ -46,7 +48,7 @@
 
             <HorizontalStackLayout>
                 <Frame BorderColor="White" BackgroundColor="#333333" CornerRadius="25" Padding="0">
-                    <Entry x:Name="PasswordEntry" Placeholder="Sisestage oma parool" IsPassword="True" Style="{StaticResource EntryStyle}" WidthRequest="340"/>
+                    <Entry x:Name="PasswordEntry" Placeholder="Sisestage oma parool" IsPassword="True" Style="{StaticResource EntryStyle}" WidthRequest="300"/>
                 </Frame>
                 <Button x:Name="ShowPass" Clicked="OnTogglePasswordVisibility" BackgroundColor="Transparent">
                     <Button.ImageSource>
