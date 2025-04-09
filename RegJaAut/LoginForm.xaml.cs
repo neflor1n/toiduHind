@@ -1,4 +1,5 @@
 using toiduHind.DatabaseModels;
+using toiduHind.MainToiduFol.HomePage;
 
 namespace toiduHind.RegJaAut;
 
@@ -32,7 +33,7 @@ public partial class LoginForm : ContentPage
         if (user != null && user.Password == password)
         {
             await DisplayAlert("Õnnestus", "Sisselogimine õnnestus!", "OK");
-            await Navigation.PushAsync(new AvaLeht());
+            await Navigation.PushAsync(new MainToiduFol.HomePage.HomePage(user));
         }
         else
         {

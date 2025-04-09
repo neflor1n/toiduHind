@@ -42,5 +42,10 @@ public class Database
         return await _db.Table<User>().Where(u => u.Email == email && u.Password == password).FirstOrDefaultAsync();
     }
 
+    public Task<int> UpdateUser(User user)
+    {
+        return _db.UpdateAsync(user);
+    }
+
 }
 

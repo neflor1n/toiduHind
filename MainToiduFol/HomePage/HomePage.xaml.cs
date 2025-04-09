@@ -1,35 +1,46 @@
-﻿namespace toiduHind.MainToiduFol.HomePage;
+﻿using toiduHind.DatabaseModels;
+
+namespace toiduHind.MainToiduFol.HomePage;
 
 public partial class HomePage : ContentPage
 {
-    private bool isMenuVisible = false; // Флаг состояния меню
-    private const int menuWidth = 250;  // Ширина меню
+    private bool isMenuVisible = false;
+    private const int menuWidth = 250;
+    private readonly User _loggedInUser;
 
-    public HomePage()
+    public HomePage(User user)
     {
         InitializeComponent();
-        SlidingMenu.TranslationX = -menuWidth; // Убеждаемся, что меню скрыто при старте
+        _loggedInUser = user;
+
+        SetUserGreeting();
+
+        SlidingMenu.TranslationX = -menuWidth;
         Overlay.IsVisible = false;
         Overlay.InputTransparent = true;
+    }
+
+    private void SetUserGreeting()
+    {
+        if (!string.IsNullOrEmpty(_loggedInUser?.Name))
+            GreetingLabel.Text = $"Tere, {_loggedInUser.Name}";
+        else
+            GreetingLabel.Text = "Tere!";
     }
 
     private async void OnMenuButtonClicked(object sender, EventArgs e)
     {
         if (isMenuVisible)
-        {
             await HideMenu();
-        }
         else
-        {
             await ShowMenu();
-        }
     }
 
     private async Task ShowMenu()
     {
         Overlay.IsVisible = true;
         Overlay.InputTransparent = false;
-        await Overlay.FadeTo(0.5, 250); // Затемняем фон
+        await Overlay.FadeTo(0.5, 250);
         await SlidingMenu.TranslateTo(0, 0, 250, Easing.CubicInOut);
         isMenuVisible = true;
     }
@@ -37,19 +48,28 @@ public partial class HomePage : ContentPage
     private async Task HideMenu()
     {
         await SlidingMenu.TranslateTo(-menuWidth, 0, 250, Easing.CubicInOut);
-        await Overlay.FadeTo(0, 250); // Убираем затемнение
+        await Overlay.FadeTo(0, 250);
         Overlay.IsVisible = false;
+        Overlay.InputTransparent = true;
         isMenuVisible = false;
     }
 
     private async void OnOptionSelected(object sender, EventArgs e)
     {
-        await DisplayAlert("Выбрано", $"Ты выбрал {(sender as Button).Text}", "OK");
-        await HideMenu(); // Закрываем меню после выбора
+        var btn = sender as Button;
+        await DisplayAlert("Selected", $"You selected {btn?.Text}", "OK");
+        await HideMenu();
     }
 
     private async void OnOverlayTapped(object sender, EventArgs e)
     {
-        await HideMenu(); // Закрываем меню при клике на затемненный фон
+        await HideMenu();
     }
+
+    private async void OnSettingsClicked(object sender, EventArgs e)
+    {
+        await HideMenu();
+        await Navigation.PushAsync(new SettingsPage.SettingsPage(_loggedInUser));
+    }
+
 }
