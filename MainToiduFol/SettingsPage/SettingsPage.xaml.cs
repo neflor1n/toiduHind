@@ -10,6 +10,7 @@ using MimeKit;
 public partial class SettingsPage : ContentPage
 {
     private readonly User _user;
+    private bool IsGuest => _user.Email == "guest@toiduhind.ee";
 
     public SettingsPage(User user)
     {
@@ -30,7 +31,7 @@ public partial class SettingsPage : ContentPage
             return;
         }
 
-        _generatedEmailCode = new Random().Next(100000, 999999).ToString();
+        _generatedEmailCode = new Random().Next(000000, 999999).ToString();
 
         bool sent = await SendEmailCodeAsync(newEmail, _generatedEmailCode);
 
@@ -124,11 +125,40 @@ public partial class SettingsPage : ContentPage
         }
     }
 
-
-    private void OnTogglePasswordVisibility(object sender, EventArgs e)
+    // Метод для показа/скрытия пароля
+    private void OnToggleNewPasswordVisibilityClicked(object sender, EventArgs e)
     {
-        CurrentPasswordEntry.IsPassword = !CurrentPasswordEntry.IsPassword;
-        //ShowPass.ImageSource = CurrentPasswordEntry.IsPassword ? "closed_eye.png" : "open_eye.png";
+        NewPasswordEntry.IsPassword = !NewPasswordEntry.IsPassword;
+        ToggleNewPasswordVisibility.Source = NewPasswordEntry.IsPassword ? "closed_eye_white.png" : "opened_eye_white.png";
     }
+
+    // Метод выхода из аккаунта 
+    private async void OnLogoutClicked(object sender, EventArgs e)
+    {
+        bool confirm = await DisplayAlert("Logi välja", "Oled kindel, et soovid välja logida?", "Jah", "Ei");
+        if (confirm)
+        {
+            
+            await Navigation.PopToRootAsync(); 
+        }
+    }
+
+    
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        EmailExpander.IsVisible = !IsGuest;
+        PasswordExpander.IsVisible = !IsGuest;
+        LoginPromptButton.IsVisible = IsGuest;
+        LogoutButton.IsVisible = !IsGuest;
+    }
+
+
+    private async void OnLoginRedirectClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new RegJaAut.LoginForm());
+    }
+
 
 }

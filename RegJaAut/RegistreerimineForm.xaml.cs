@@ -1,4 +1,4 @@
-using SQLite;
+Ôªøusing SQLite;
 using System.Diagnostics;
 using toiduHind.DatabaseModels;
 
@@ -39,7 +39,7 @@ public partial class RegistreerimineForm : ContentPage
                     bool success = await _database.RegisterUser(newUser);
                     if (success)
                     {
-                        await DisplayAlert("’nnestus", "Kasutaja registreerimine ınnestus!", "OK");
+                        await DisplayAlert("√ïnnestus", "Kasutaja registreerimine √µnnestus!", "OK");
                         await Navigation.PopAsync();
                     }
                     else
@@ -49,7 +49,7 @@ public partial class RegistreerimineForm : ContentPage
                 }
                 else
                 {
-                    await DisplayAlert("Viga", "Palun nıustu kasutustingimustega.", "OK");
+                    await DisplayAlert("Viga", "Palun n√µustu kasutustingimustega.", "OK");
                 }
             }
             else
@@ -59,7 +59,7 @@ public partial class RegistreerimineForm : ContentPage
         }
         else
         {
-            await DisplayAlert("Viga", "Palun t‰ida kıik v‰ljad!", "OK");
+            await DisplayAlert("Viga", "Palun t√§ida k√µik v√§ljad!", "OK");
         }
     }
 

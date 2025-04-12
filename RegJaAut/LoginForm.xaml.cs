@@ -1,4 +1,4 @@
-using toiduHind.DatabaseModels;
+Ôªøusing toiduHind.DatabaseModels;
 using toiduHind.MainToiduFol.HomePage;
 
 namespace toiduHind.RegJaAut;
@@ -25,19 +25,19 @@ public partial class LoginForm : ContentPage
 
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
-            await DisplayAlert("Viga", "Palun t‰itke kıik v‰ljad!", "OK");
+            await DisplayAlert("Viga", "Palun t√§itke k√µik v√§ljad!", "OK");
             return;
         }
 
         var user = await _database.GetUserByEmail(email);
         if (user != null && user.Password == password)
         {
-            await DisplayAlert("’nnestus", "Sisselogimine ınnestus!", "OK");
+            await DisplayAlert("√ïnnestus", "Sisselogimine √µnnestus!", "OK");
             await Navigation.PushAsync(new MainToiduFol.HomePage.HomePage(user));
         }
         else
         {
-            await DisplayAlert("Viga", "Vale e-posti aadress vıi parool", "OK");
+            await DisplayAlert("Viga", "Vale e-posti aadress v√µi parool", "OK");
         }
     }
 }

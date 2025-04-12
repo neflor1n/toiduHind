@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="toiduHind.MainToiduFol.SettingsPage.SettingsPage"
              Title="Settings"
              BackgroundColor="White">
@@ -13,26 +14,86 @@
                    FontAttributes="Bold"
                    HorizontalOptions="Center" />
 
-            <!-- Смена email -->
-            <Label Text="Uus e-posti aadress:" />
-            <Entry x:Name="NewEmailEntry" Placeholder="Sisesta uus e-post" Keyboard="Email"/>
 
-            <Button Text="Kinnita e-post" Clicked="OnConfirmEmailClicked"/>
+            <!-- Expander: Email -->
+            <toolkit:Expander x:Name="EmailExpander">
+                <toolkit:Expander.Header>
+                    <Frame BackgroundColor="#F0F0F0" Padding="10" CornerRadius="8">
+                        <Label Text="Muuda e-posti aadressi" FontAttributes="Bold" />
+                    </Frame>
+                </toolkit:Expander.Header>
 
-            <Label Text="Praegune parool:" />
-            <Entry x:Name="CurrentPasswordEntry" Placeholder="Sisesta praegune parool" IsPassword="True" />
+                <VerticalStackLayout Padding="10" Spacing="10">
+                    <Label Text="Uus e-posti aadress:" />
+                    <Entry x:Name="NewEmailEntry" Placeholder="Sisesta uus e-post" Keyboard="Email"/>
 
-            <!-- Смена пароля -->
-            <Label Text="Uus parool:" />
-            <Entry x:Name="NewPasswordEntry" Placeholder="Sisesta uus parool" IsPassword="True" Margin="0,0,50,0"/>
-            <!-- НУЖНО ДОБАВИТЬ КНОПКУ НА ПРОСМОТР ПАРОЛЯ *НОВОГО*-->
-            
-            <Label Text="Korda parooli:" />
-            <Entry x:Name="ConfirmPasswordEntry" Placeholder="Sisesta uuesti parool" IsPassword="True" />
+                    <Button Text="Kinnita e-post" Clicked="OnConfirmEmailClicked"/>
+                </VerticalStackLayout>
+            </toolkit:Expander>
 
-            <Button Text="Muuda parooli" Clicked="OnChangePasswordClicked"/>
+            <!-- Expander: Parool -->
+            <toolkit:Expander x:Name="PasswordExpander">
+                <toolkit:Expander.Header>
+                    <Frame BackgroundColor="#F0F0F0" Padding="10" CornerRadius="8">
+                        <Label Text="Muuda parooli" FontAttributes="Bold" />
+                    </Frame>
+                </toolkit:Expander.Header>
+
+                <VerticalStackLayout Padding="10" Spacing="10">
+
+                    <Label Text="Praegune parool:" />
+                    <Entry x:Name="CurrentPasswordEntry" Placeholder="Sisesta praegune parool" IsPassword="True" />
+
+                    <Label Text="Uus parool:" />
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Entry x:Name="NewPasswordEntry"
+                               Placeholder="Sisesta uus parool"
+                               IsPassword="True"
+                               Grid.Column="0" />
+
+                        <ImageButton x:Name="ToggleNewPasswordVisibility"
+                                     Source="closed_eye_black.png"
+                                     WidthRequest="30"
+                                     HeightRequest="30"
+                                     BackgroundColor="Transparent"
+                                     Clicked="OnToggleNewPasswordVisibilityClicked"
+                                     Grid.Column="1"
+                                     HorizontalOptions="End"
+                                     VerticalOptions="Center"/>
+                    </Grid>
+
+                    <Label Text="Korda parooli:" />
+                    <Entry x:Name="ConfirmPasswordEntry" Placeholder="Sisesta uuesti parool" IsPassword="True" />
+
+                    <Button Text="Muuda parooli" Clicked="OnChangePasswordClicked"/>
+
+                </VerticalStackLayout>
+            </toolkit:Expander>
+
+            <Button x:Name="LogoutButton"
+                Text="Logi välja"
+                TextColor="White"
+                BackgroundColor="DarkRed"
+                FontAttributes="Bold"
+                CornerRadius="8"
+                Clicked="OnLogoutClicked"
+                Margin="0,30,0,20"
+                HeightRequest="50"/>    
+
+
+            <Button x:Name="LoginPromptButton"
+                Text="Logi sisse kontoga"
+                IsVisible="False"
+                BackgroundColor="DarkGreen"
+                TextColor="White"
+                CornerRadius="8"
+                Clicked="OnLoginRedirectClicked"
+                Margin="0,20,0,0"
+                FontAttributes="Bold"/>
+
 
         </VerticalStackLayout>
+        
+        
     </ScrollView>
-
 </ContentPage>
