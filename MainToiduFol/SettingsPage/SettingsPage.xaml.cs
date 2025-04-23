@@ -1,4 +1,4 @@
-﻿namespace toiduHind.MainToiduFol.SettingsPage;
+namespace toiduHind.MainToiduFol.SettingsPage;
 
 using System.Diagnostics;
 using toiduHind.DatabaseModels;
@@ -31,7 +31,14 @@ public partial class SettingsPage : ContentPage
             return;
         }
 
-        _generatedEmailCode = new Random().Next(000000, 999999).ToString();
+        var existingUser = await App.Database.GetUserByEmail(newEmail);
+        if (existingUser != null && existingUser.Id != _user.Id)
+        {
+            await ShowToast("See e-posti aadress on juba kasutusel.");
+            return;
+        }
+
+        _generatedEmailCode = new Random().Next(100000, 999999).ToString();
 
         bool sent = await SendEmailCodeAsync(newEmail, _generatedEmailCode);
 
@@ -54,6 +61,7 @@ public partial class SettingsPage : ContentPage
             await ShowToast("Vale kood!");
         }
     }
+
 
     // Метод меняющий пароль на новый 
     private async void OnChangePasswordClicked(object sender, EventArgs e)
