@@ -92,8 +92,16 @@
                 FontAttributes="Bold"/>
 
 
+            <StackLayout x:Name="AdminFeaturesLayout" IsVisible="False" Margin="0,20,0,0">
+                <Label Text="Adminnifunktsioonid" FontAttributes="Bold" FontSize="18" TextColor="Red"/>
+
+                <Button Text="Lisa uus pood" Clicked="OnAddStoreClicked" />
+                <Button Text="Laadi tooted CSV-st" Clicked="OnImportCsvClicked" />
+            </StackLayout>
+
         </VerticalStackLayout>
+
         
-        
+
     </ScrollView>
 </ContentPage>

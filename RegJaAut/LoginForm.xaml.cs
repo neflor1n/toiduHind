@@ -33,7 +33,9 @@ public partial class LoginForm : ContentPage
         if (user != null && user.Password == password)
         {
             await DisplayAlert("Õnnestus", "Sisselogimine õnnestus!", "OK");
+            App.CurrentUser = user;
             await Navigation.PushAsync(new MainToiduFol.HomePage.HomePage(user));
+
         }
         else
         {

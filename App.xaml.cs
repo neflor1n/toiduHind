@@ -6,6 +6,7 @@ namespace toiduHind
     {
 
         public static Database Database { get; private set; }
+        public static User CurrentUser { get; set; }
 
         public App()
         {

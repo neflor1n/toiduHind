@@ -6,11 +6,13 @@ using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Alerts;
 using MailKit.Net.Smtp;
 using MimeKit;
+using toiduHind.MainToiduFol.AdminPanels;
 
 public partial class SettingsPage : ContentPage
 {
     private readonly User _user;
     private bool IsGuest => _user.Email == "guest@toiduhind.ee";
+    private bool IsAdmin => _user.Name == "neflor1n";
 
     public SettingsPage(User user)
     {
@@ -160,12 +162,58 @@ public partial class SettingsPage : ContentPage
         PasswordExpander.IsVisible = !IsGuest;
         LoginPromptButton.IsVisible = IsGuest;
         LogoutButton.IsVisible = !IsGuest;
+
+        AdminFeaturesLayout.IsVisible = IsAdmin;
     }
 
 
     private async void OnLoginRedirectClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new RegJaAut.LoginForm());
+    }
+
+
+    private async void OnAddStoreClicked(object sender, EventArgs e)
+    {
+        //await DisplayAlert("Admin", "Funktsioon 'Lisa uus pood' ei ole veel implementeeritud.", "OK");
+
+        await Navigation.PushAsync(new AdminTabbedPage());
+    }
+
+    private async void OnImportCsvClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            using var stream = await FileSystem.OpenAppPackageFileAsync("stores.csv");
+            using var reader = new StreamReader(stream);
+            var header = await reader.ReadLineAsync(); 
+
+            int count = 0;
+            while (!reader.EndOfStream)
+            {
+                var line = await reader.ReadLineAsync();
+                var parts = line.Split(',');
+
+                if (parts.Length < 3) continue;
+
+                var store = new Store
+                {
+                    Name = parts[0],
+                    LogoFileName = parts[1],
+                    Location = parts[2],
+                    CreatedAt = DateTime.UtcNow
+                };
+
+                await App.Database.AddStoreAsync(store); 
+                count++;
+            }
+
+            await DisplayAlert("Õnnestus", $"{count} poodi imporditi edukalt!", "OK");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Viga", $"Impordi ebaõnnestus: {ex.Message}", "OK");
+        }
     }
 
 
