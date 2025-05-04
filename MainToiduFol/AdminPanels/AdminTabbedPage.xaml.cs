@@ -7,8 +7,5 @@ public partial class AdminTabbedPage : TabbedPage
     public AdminTabbedPage()
     {
         InitializeComponent();
-
-        this.Children.Add(new StoresPage());
-        // this.Children.Add(new ProductsPage()); // если хочешь
     }
 }

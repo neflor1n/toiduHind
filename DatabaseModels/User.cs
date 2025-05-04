@@ -19,5 +19,8 @@ public class User
 
     [NotNull]
     public string Password { get; set; }
+
+    [NotNull]
+    public string Role { get; set; } = "User"; 
 }
 

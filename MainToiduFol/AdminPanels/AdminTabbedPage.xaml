@@ -6,6 +6,8 @@
             Title="Admin Panel">
 
     <local:StoresPage Title="Poed" />
-    <!-- Добавь позже: <local:ProductsPage Title="Tooted" /> -->
+    <local:UsersPage Title="Users" />
+    <local:ProductsPage Title="Products" />
+    <local:CategoriesPage Title="Categories" />
 
 </TabbedPage>

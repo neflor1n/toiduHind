@@ -56,9 +56,47 @@ public partial class HomePage : ContentPage
 
     private async void OnOptionSelected(object sender, EventArgs e)
     {
-        var btn = sender as Button;
-        await DisplayAlert("Selected", $"You selected {btn?.Text}", "OK");
-        await HideMenu();
+        var button = sender as Button;
+        if (button == null) return;
+
+        string categoryName = button.Text.Trim();
+        await LoadProductsByCategoryAsync(categoryName);
+    }
+
+    private async Task LoadProductsByCategoryAsync(string categoryName)
+    {
+
+        // Получаем категорию по имени
+        var category = await App.Database.GetCategoryByNameAsync(categoryName);
+        if (category == null)
+        {
+            Console.WriteLine($"Категория '{categoryName}' не найдена в базе данных.");
+            await DisplayAlert("Ошибка", "Категория не найдена.", "OK");
+            return;
+        }
+
+        // Получаем товары и магазины для категории
+        var products = await App.Database.GetProductsByCategoryAsync(category.Id);
+        var prices = await App.Database.GetAllPricesAsync();
+        var stores = await App.Database.GetAllStoresAsync();
+
+        // Объединяем данные
+        var productList = products.Select(product =>
+        {
+            var price = prices.FirstOrDefault(p => p.ProductId == product.Id);
+            var store = stores.FirstOrDefault(s => s.Id == price?.StoreId);
+
+            return new
+            {
+                ProductName = product.Name,
+                Brand = product.Brand,
+                Price = price?.CurrentPrice ?? 0,
+                StoreName = store?.Name ?? "Неизвестный магазин"
+            };
+        }).ToList();
+
+        // Обновляем интерфейс
+        ProductsCollection.ItemsSource = productList;
     }
 
     private async void OnOverlayTapped(object sender, EventArgs e)
@@ -71,5 +109,7 @@ public partial class HomePage : ContentPage
         await HideMenu();
         await Navigation.PushAsync(new SettingsPage.SettingsPage(_loggedInUser));
     }
+    
+
 
 }

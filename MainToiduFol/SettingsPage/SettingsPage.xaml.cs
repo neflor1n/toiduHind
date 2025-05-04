@@ -12,7 +12,8 @@ public partial class SettingsPage : ContentPage
 {
     private readonly User _user;
     private bool IsGuest => _user.Email == "guest@toiduhind.ee";
-    private bool IsAdmin => _user.Name == "neflor1n";
+    private bool IsAdminNef => _user.Name == "neflor1n";
+    private bool IsAdmin => _user.Role == "Admin";
 
     public SettingsPage(User user)
     {
@@ -164,6 +165,7 @@ public partial class SettingsPage : ContentPage
         LogoutButton.IsVisible = !IsGuest;
 
         AdminFeaturesLayout.IsVisible = IsAdmin;
+        AdminFeaturesLayout.IsVisible = IsAdminNef;
     }
 
 
@@ -180,6 +182,8 @@ public partial class SettingsPage : ContentPage
         await Navigation.PushAsync(new AdminTabbedPage());
     }
 
+
+    // Метод для импорта магазинов из CSV файла
     private async void OnImportCsvClicked(object sender, EventArgs e)
     {
         try
@@ -216,5 +220,54 @@ public partial class SettingsPage : ContentPage
         }
     }
 
+
+    // Метод для импорта пользователей из CSV файла
+    private async void OnImportUsersClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            using var stream = await FileSystem.OpenAppPackageFileAsync("users.csv");
+            using var reader = new StreamReader(stream);
+            var header = await reader.ReadLineAsync(); // Пропускаем заголовок
+
+            int count = 0;
+            while (!reader.EndOfStream)
+            {
+                var line = await reader.ReadLineAsync();
+                var parts = line.Split(',');
+
+                if (parts.Length < 3) continue;
+
+                var user = new User
+                {
+                    Name = parts[0],
+                    Email = parts[1],
+                    Password = parts[2],
+                    Role = parts.Length > 3 ? parts[3] : "User" // Роль по умолчанию
+                };
+
+                await App.Database.AddUserAsync(user);
+                count++;
+            }
+
+            await DisplayAlert("Успех", $"{count} пользователей успешно импортировано!", "OK");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ошибка", $"Импорт не удался: {ex.Message}", "OK");
+        }
+    }
+
+    private async void OnImportProductsClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            await App.Database.ImportProductsFromCsvAsync();
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ошибка", $"Не удалось импортировать товары: {ex.Message}", "OK");
+        }
+    }
 
 }

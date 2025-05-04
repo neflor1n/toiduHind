@@ -24,5 +24,7 @@ public class Product
 
     public string Description { get; set; }
 
+    public int PopularityScore { get; set; } = 0; // Рейтинг популярности // PopularityScore для сортировки продуктов по популярности.
+
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }

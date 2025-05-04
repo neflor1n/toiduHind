@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="toiduHind.MainToiduFol.AdminPanels.ProductsPage"
+             Title="Products">
+    <VerticalStackLayout>
+        <CollectionView x:Name="ProductsCollection" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="LightGray" CornerRadius="10" Padding="10" Margin="5">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Name}" FontSize="20" FontAttributes="Bold" />
+                            <Label Text="{Binding Brand}" FontSize="16" />
+                            <Label Text="{Binding CurrentPrice, StringFormat='Цена: {0:C}'}" FontSize="16" TextColor="Green" />
+                            <Image Source="{Binding ImageUrl}" HeightRequest="100" Aspect="AspectFill" />
+                            <Button Text="Удалить"
+                                    BackgroundColor="Red"
+                                    TextColor="White"
+                                    CommandParameter="{Binding Id}"
+                                    Clicked="OnDeleteProductClicked" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

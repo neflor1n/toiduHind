@@ -1,0 +1,11 @@
+﻿Name,Brand,CategoryId,StoreId,CurrentPrice,DiscountPrice,ImageUrl
+Milk 1L,Tere,4,1,1.19,0.99,milk_tere.png
+Bread Rye,Leibur,9,2,0.89,,bread_rye.png
+Chicken Fillet 1kg,Tallegg,1,3,5.99,4.99,chicken_fillet.png
+Salmon Fillet 1kg,Kalakala,2,4,12.99,9.99,salmon_fillet.png
+Eggs 10pcs,MunaFarm,3,5,1.79,1.49,eggs_10pcs.png
+Apple 1kg,EestiFarm,5,6,2.49,,apple.png
+Orange 1kg,GlobalFruits,6,7,2.99,2.49,orange.png
+Coca-Cola 1.5L,Coca-Cola,7,8,1.49,1.19,coca_cola.png
+Chocolate Bar,Kalev,8,9,0.99,0.79,chocolate_bar.png
+Frozen Pizza,Grandiosa,10,10,3.99,2.99,frozen_pizza.png

@@ -33,7 +33,8 @@ public partial class RegistreerimineForm : ContentPage
                     {
                         Name = NameEntry.Text,
                         Email = EmailEntry.Text,
-                        Password = PasswordEntry.Text
+                        Password = PasswordEntry.Text,
+                        Role = "User"
                     };
 
                     bool success = await _database.RegisterUser(newUser);
