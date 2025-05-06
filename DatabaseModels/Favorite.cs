@@ -20,4 +20,3 @@ public class Favorite
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
-

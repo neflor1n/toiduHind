@@ -72,17 +72,33 @@
                 <CollectionView x:Name="ProductsCollection" SelectionMode="None">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame BorderColor="LightGray" CornerRadius="10" Padding="10" Margin="5">
-                                <VerticalStackLayout>
-                                    <Label Text="{Binding ProductName}" FontSize="20" FontAttributes="Bold" />
-                                    <Label Text="{Binding Brand}" FontSize="16" />
-                                    <Label Text="{Binding Price, StringFormat='Цена: {0:C}'}" FontSize="16" TextColor="Green" />
-                                    <Label Text="{Binding StoreName}" FontSize="14" TextColor="Gray" />
+                            <toolkit:Expander>
+                                <toolkit:Expander.Header>
+                                    <Frame BackgroundColor="#EFEFEF" CornerRadius="8" Padding="10" Margin="5">
+                                        <Label Text="{Binding ProductName}" FontSize="18" FontAttributes="Bold" />
+                                    </Frame>
+                                </toolkit:Expander.Header>
+                                <VerticalStackLayout Padding="10" Spacing="8">
+                                    <CollectionView ItemsSource="{Binding Variants}" SelectionMode="None">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Frame BorderColor="LightGray" CornerRadius="5" Padding="8" Margin="3">
+                                                    <VerticalStackLayout>
+                                                        <Label Text="{Binding Brand}" FontSize="16" />
+                                                        <Label Text="{Binding Price, StringFormat='Hind: {0:C}'}" FontSize="16" TextColor="Green"/>
+                                                        <Label Text="{Binding Discount, StringFormat='Soodushind: {0:C}'}" FontSize="14" TextColor="Red" IsVisible="{Binding Discount, Converter={StaticResource NullToVisibilityConverter}}" />
+                                                        <Label Text="{Binding StoreName}" FontSize="14" TextColor="Gray" />
+                                                    </VerticalStackLayout>
+                                                </Frame>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
                                 </VerticalStackLayout>
-                            </Frame>
+                            </toolkit:Expander>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+
 
             </VerticalStackLayout>
         </ScrollView>

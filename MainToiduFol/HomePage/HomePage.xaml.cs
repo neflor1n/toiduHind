@@ -65,39 +65,47 @@ public partial class HomePage : ContentPage
 
     private async Task LoadProductsByCategoryAsync(string categoryName)
     {
-
-        // Получаем категорию по имени
         var category = await App.Database.GetCategoryByNameAsync(categoryName);
         if (category == null)
         {
-            Console.WriteLine($"Категория '{categoryName}' не найдена в базе данных.");
             await DisplayAlert("Ошибка", "Категория не найдена.", "OK");
             return;
         }
 
-        // Получаем товары и магазины для категории
         var products = await App.Database.GetProductsByCategoryAsync(category.Id);
         var prices = await App.Database.GetAllPricesAsync();
         var stores = await App.Database.GetAllStoresAsync();
 
-        // Объединяем данные
-        var productList = products.Select(product =>
-        {
-            var price = prices.FirstOrDefault(p => p.ProductId == product.Id);
-            var store = stores.FirstOrDefault(s => s.Id == price?.StoreId);
-
-            return new
+        // Группируем товары по названию
+        var groupedProducts = products
+            .GroupBy(p => p.Name)
+            .Select(group => new
             {
-                ProductName = product.Name,
-                Brand = product.Brand,
-                Price = price?.CurrentPrice ?? 0,
-                StoreName = store?.Name ?? "Неизвестный магазин"
-            };
-        }).ToList();
+                ProductName = group.Key,
+                Variants = group.Select(product =>
+                {
+                    var price = prices.FirstOrDefault(p => p.ProductId == product.Id);
+                    var store = stores.FirstOrDefault(s => s.Id == price?.StoreId);
 
-        // Обновляем интерфейс
-        ProductsCollection.ItemsSource = productList;
+                    return new
+                    {
+                        Brand = product.Brand,
+                        Price = price?.CurrentPrice ?? 0,
+                        Discount = price?.DiscountPrice,
+                        StoreName = store?.Name ?? "Неизвестный магазин"
+                    };
+                })
+                // сортируем по цене
+                .OrderBy(v => v.Price)
+                .ToList()
+            })
+            .ToList();
+
+
+        // Привязываем к CollectionView (с Expander в шаблоне)
+        ProductsCollection.ItemsSource = groupedProducts;
     }
+
 
     private async void OnOverlayTapped(object sender, EventArgs e)
     {
