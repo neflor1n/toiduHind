@@ -1,5 +1,7 @@
 # ToiduHind.ee
 
+[🇪🇪 Eesti](README.md) | [🇷🇺 Русский](README.ru.md) | [🇬🇧 English](README.en.md)
+
 ## TALLINNA TÖÖSTUSHARIDUSKESKUS
 ### Projekti dokumentatsioon
 
