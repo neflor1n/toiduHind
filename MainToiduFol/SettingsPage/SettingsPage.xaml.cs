@@ -250,11 +250,11 @@ public partial class SettingsPage : ContentPage
                 count++;
             }
 
-            await DisplayAlert("Успех", $"{count} пользователей успешно импортировано!", "OK");
+            await DisplayAlert("Õnnestus", $"{count} kasutajat imporditi edukalt!", "OK");
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Ошибка", $"Импорт не удался: {ex.Message}", "OK");
+            await DisplayAlert("Viga", $"Importimine ebaõnnestus: {ex.Message}", "OK");
         }
     }
 
@@ -266,7 +266,7 @@ public partial class SettingsPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Ошибка", $"Не удалось импортировать товары: {ex.Message}", "OK");
+            await DisplayAlert("Viga", $"Toodete importimine ebaõnnestus: {ex.Message}", "OK");
         }
     }
 

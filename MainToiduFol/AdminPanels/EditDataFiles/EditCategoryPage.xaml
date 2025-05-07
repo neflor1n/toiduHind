@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="toiduHind.MainToiduFol.AdminPanels.EditDataFiles.EditCategoryPage"
+             Title="Edit Category">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Edit Category" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+            <Label Text="Name" FontAttributes="Bold"/>
+            <Entry x:Name="NameEntry" Placeholder="Enter category name"/>
+
+            <Label Text="Parent Category (optional)" FontAttributes="Bold"/>
+            <Picker x:Name="ParentCategoryPicker" Title="Select parent category (or leave empty)"/>
+
+            <Label x:Name="WarningLabel" 
+                   Text="Note: Editing parent category may affect related products" 
+                   TextColor="Orange" 
+                   FontSize="14" 
+                   IsVisible="false"/>
+
+            <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Center" Margin="0,15,0,0">
+                <Button Text="Save Changes" Clicked="OnSaveClicked" BackgroundColor="#007bff" TextColor="White" WidthRequest="140"/>
+                <Button Text="Cancel" Clicked="OnCancelClicked" BackgroundColor="#6c757d" TextColor="White" WidthRequest="120"/>
+            </StackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

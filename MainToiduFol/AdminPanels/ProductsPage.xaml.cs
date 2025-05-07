@@ -1,4 +1,6 @@
-using toiduHind.DatabaseModels;
+ï»¿using toiduHind.DatabaseModels;
+using toiduHind.MainToiduFol.AdminPanels.EditDataFiles;
+using toiduHind.MainToiduFol.AdminPanels.AddDataFiles;
 
 namespace toiduHind.MainToiduFol.AdminPanels;
 
@@ -20,7 +22,7 @@ public partial class ProductsPage : ContentPage
         var products = await App.Database.GetAllProductsAsync();
         var prices = await App.Database.GetAllPricesAsync();
 
-        // Îáúåäèíÿåì ïðîäóêòû ñ èõ öåíàìè
+        // Ð¡Ð¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ Ð¿Ñ€Ð¾Ð´ÑƒÐºÑ‚Ð° Ð¸ ÐµÐ³Ð¾ Ñ†ÐµÐ½Ð½Ð¸Ðº
         var productList = products.Select(product =>
         {
             var price = prices.FirstOrDefault(p => p.ProductId == product.Id);
@@ -29,8 +31,14 @@ public partial class ProductsPage : ContentPage
                 product.Id,
                 product.Name,
                 product.Brand,
+                product.CategoryId,
+                product.ImageUrl,
+                product.Description,
+                product.PopularityScore,
+                PriceId = price?.Id ?? 0,
                 CurrentPrice = price?.CurrentPrice ?? 0,
-                product.ImageUrl
+                DiscountPrice = price?.DiscountPrice,
+                StoreId = price?.StoreId ?? 0
             };
         }).ToList();
 
@@ -42,19 +50,67 @@ public partial class ProductsPage : ContentPage
         var button = sender as Button;
         if (button?.CommandParameter is int productId)
         {
-            bool confirm = await DisplayAlert("Óäàëåíèå", "Âû óâåðåíû, ÷òî õîòèòå óäàëèòü ýòîò ïðîäóêò?", "Äà", "Íåò");
+            bool confirm = await DisplayAlert("Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ", "Ð’Ñ‹ ÑƒÐ²ÐµÑ€ÐµÐ½Ñ‹, Ñ‡Ñ‚Ð¾ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ ÑÑ‚Ð¾Ñ‚ Ð¿Ñ€Ð¾Ð´ÑƒÐºÑ‚?", "Ð”Ð°", "ÐÐµÑ‚");
             if (confirm)
             {
                 try
                 {
                     await App.Database.DeleteProductByIdAsync(productId);
                     await LoadProductsAsync();
-                    await DisplayAlert("Óñïåõ", "Ïðîäóêò óäàëåí.", "OK");
+                    await DisplayAlert("Ð£ÑÐ¿ÐµÑ…", "ÐŸÑ€Ð¾Ð´ÑƒÐºÑ‚ ÑƒÐ´Ð°Ð»ÐµÐ½.", "OK");
                 }
                 catch (Exception ex)
                 {
-                    await DisplayAlert("Îøèáêà", $"Íå óäàëîñü óäàëèòü ïðîäóêò: {ex.Message}", "OK");
+                    await DisplayAlert("ÐžÑˆÐ¸Ð±ÐºÐ°", $"ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ Ð¿Ñ€Ð¾Ð´ÑƒÐºÑ‚: {ex.Message}", "OK");
                 }
+            }
+        }
+    }
+
+    private async void OnAddProductClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new AddProductPage());
+    }
+
+    private async void OnEditProductClicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        if (button?.CommandParameter is int productId)
+        {
+            await Navigation.PushAsync(new EditProductPage(productId));
+        }
+    }
+
+    private async void OnProductTapped(object sender, TappedEventArgs e)
+    {
+        if (e.Parameter is int productId)
+        {
+            try
+            {
+                // Get the product details
+                var product = await App.Database.GetProductByIdAsync(productId);
+                if (product != null)
+                {
+                    var price = (await App.Database.GetAllPricesAsync())
+                        .FirstOrDefault(p => p.ProductId == product.Id);
+
+                    var category = await App.Database.GetCategoryByIdAsync(product.CategoryId);
+
+                    // Show product details
+                    string details = $"ID: {product.Id}\n" +
+                                    $"Name: {product.Name}\n" +
+                                    $"Brand: {product.Brand}\n" +
+                                    $"Category: {category?.Name ?? "Unknown"}\n" +
+                                    $"Price: {price?.CurrentPrice:C}\n" +
+                                    $"Discount: {(price?.DiscountPrice.HasValue == true ? price.DiscountPrice.Value.ToString("C") : "None")}\n" +
+                                    $"Created: {product.CreatedAt:g}";
+
+                    await DisplayAlert($"Product Details: {product.Name}", details, "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Failed to load product details: {ex.Message}", "OK");
             }
         }
     }

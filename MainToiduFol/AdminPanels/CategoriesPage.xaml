@@ -3,19 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="toiduHind.MainToiduFol.AdminPanels.CategoriesPage"
              Title="Categories">
-    <VerticalStackLayout Padding="15" Spacing="15">
-        <Button Text="Импортировать категории" Clicked="OnImportCategoriesClicked" />
-        <CollectionView x:Name="CategoriesCollection" SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame BorderColor="LightGray" CornerRadius="10" Padding="10" Margin="5">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding Name}" FontSize="20" FontAttributes="Bold" />
-                            <Label Text="{Binding ParentId, StringFormat='Parent ID: {0}'}" FontSize="16" TextColor="Gray" />
-                        </VerticalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="15" Spacing="15">
+            <Button Text="Добавить категорию" 
+                    Clicked="OnAddCategoryClicked" 
+                    BackgroundColor="#007bff" 
+                    TextColor="White" />
+            <CollectionView x:Name="CategoriesCollection" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightGray" CornerRadius="10" Padding="10" Margin="5">
+                            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
+                                <VerticalStackLayout Grid.Column="0">
+                                    <Label Text="{Binding Name}" FontSize="20" FontAttributes="Bold" />
+                                    <Label Text="{Binding ParentId, StringFormat='Parent ID: {0}'}" FontSize="16" TextColor="Gray" />
+                                </VerticalStackLayout>
+                                <Button Grid.Column="1"
+                                        Text="Изменить"
+                                        BackgroundColor="#FFA500"
+                                        TextColor="White"
+                                        CommandParameter="{Binding Id}"
+                                        Clicked="OnEditCategoryClicked" />
+                                <Button Grid.Column="2"
+                                        Text="Удалить"
+                                        BackgroundColor="Red"
+                                        TextColor="White"
+                                        CommandParameter="{Binding Id}"
+                                        Clicked="OnDeleteCategoryClicked" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

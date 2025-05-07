@@ -3,30 +3,76 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="toiduHind.MainToiduFol.AdminPanels.StoresPage"
              Title="Poed">
-    <CollectionView x:Name="StoresCollection">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Frame BorderColor="Gray" Margin="10" Padding="10">
-                    <VerticalStackLayout>
-                        <Label Text="{Binding Name}" FontAttributes="Bold"/>
-                        <Label Text="{Binding Location}" />
-                        <!-- <Label Text="{Binding LogoFileName}" FontSize="10" TextColor="Gray"/> -->
+    <ScrollView>
+        <VerticalStackLayout Padding="10">
+            <Button Text="Добавить магазин"
+                    Clicked="OnAddStoreClicked"
+                    BackgroundColor="#007bff"
+                    TextColor="White"
+                    Margin="0,0,0,10" />
 
-                        <!-- Новое: изображение логотипа -->
-                        <Image Source="{Binding LogoFileName}"
-                            HeightRequest="50"
-                            Aspect="AspectFit"
-                            Margin="0,5,0,0"/>           
+            <CollectionView x:Name="StoresCollection">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightGray" 
+                               Margin="0,5" 
+                               Padding="10" 
+                               CornerRadius="8"
+                               HasShadow="True">
 
-                        <Button Text="Kustuta" BackgroundColor="Red" TextColor="White"
-                            Clicked="OnDeleteStoreClicked"
-                            CommandParameter="{Binding Id}" />      
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding Id}"
+                                                      Tapped="OnStoreTapped" />
+                            </Frame.GestureRecognizers>
 
-                    </VerticalStackLayout>
+                            <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="10">
+                                <!-- Logo or Icon -->
+                                <Image Grid.Column="0" 
+                                       Source="{Binding LogoFileName}"
+                                       HeightRequest="60" 
+                                       WidthRequest="60"
+                                       Aspect="AspectFit" 
+                                       Margin="0,5,0,0"/>
 
-                </Frame>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+                                <!-- Store Info -->
+                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                    <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" />
+                                    <Label Text="{Binding Location}" FontSize="14" TextColor="Gray" />
+                                    <StackLayout Orientation="Horizontal" Spacing="5">
+                                        <Label Text="{Binding Latitude, StringFormat='Lat: {0:F4}'}" 
+                                               FontSize="12" TextColor="DarkGray" />
+                                        <Label Text="{Binding Longitude, StringFormat='Long: {0:F4}'}" 
+                                               FontSize="12" TextColor="DarkGray" />
+                                    </StackLayout>
+                                </VerticalStackLayout>
+
+                                <!-- Edit Button -->
+                                <Button Grid.Column="2"
+                                        Text="Изменить" 
+                                        BackgroundColor="#FFA500" 
+                                        TextColor="White"
+                                        CommandParameter="{Binding Id}" 
+                                        Clicked="OnEditStoreClicked"
+                                        HeightRequest="40"
+                                        WidthRequest="80"
+                                        FontSize="14"
+                                        Margin="0,0,5,0" />
+
+                                <!-- Delete Button -->
+                                <Button Grid.Column="3"
+                                        Text="Удалить" 
+                                        BackgroundColor="Red" 
+                                        TextColor="White"
+                                        CommandParameter="{Binding Id}" 
+                                        Clicked="OnDeleteStoreClicked"
+                                        HeightRequest="40"
+                                        WidthRequest="80"
+                                        FontSize="14" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
-

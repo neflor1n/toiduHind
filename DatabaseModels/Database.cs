@@ -320,6 +320,99 @@ public class Database
             await Application.Current.MainPage.DisplayAlert("Ошибка", $"Не удалось импортировать товары: {ex.Message}", "OK");
         }
     }
+    // USER
+    public async Task<User> GetUserByIdAsync(int id)
+    {
+        return await _db.Table<User>().Where(u => u.Id == id).FirstOrDefaultAsync();
+    }
+
+
+    // PRODUCTS 
+    public async Task AddProductAsync(Product product)
+    {
+        await _db.InsertAsync(product);
+    }
+
+    public async Task<Product> GetProductByIdAsync(int id)
+    {
+        return await _db.Table<Product>().Where(p => p.Id == id).FirstOrDefaultAsync();
+    }
+
+    public async Task<Category> GetCategoryByIdAsync(int id)
+    {
+        return await _db.Table<Category>().Where(c => c.Id == id).FirstOrDefaultAsync();
+    }
+
+    public Task<int> UpdateProductAsync(Product product)
+    {
+        return _db.UpdateAsync(product);
+    }
+
+    public Task<int> UpdatePriceAsync(Price price)
+    {
+        return _db.UpdateAsync(price);
+    }
+
+    public async Task InsertPriceAsync(Price price)
+    {
+        await _db.InsertAsync(price);
+    }
+
+
+    // STORES
+    public async Task<Store> GetStoreByIdAsync(int id)
+    {
+        return await _db.Table<Store>().Where(s => s.Id == id).FirstOrDefaultAsync();
+    }
+
+    public Task<int> UpdateStoreAsync(Store store)
+    {
+        return _db.UpdateAsync(store);
+    }
+
+    public async Task InsertStoreAsync(Store store)
+    {
+        await _db.InsertAsync(store);
+    }
+
+    public async Task<Store> GetStoreByNameAsync(string name)
+    {
+        return await _db.Table<Store>().Where(s => s.Name == name).FirstOrDefaultAsync();
+    }
+
+    // CATEGORIES
+
+    public async Task DeleteCategoryByIdAsync(int id)
+    {
+        var category = await _db.FindAsync<Category>(id);
+        if (category != null)
+            await _db.DeleteAsync(category);
+    }
+
+    public async Task<List<Category>> GetParentCategoriesAsync()
+    {
+        return await _db.Table<Category>().Where(c => c.ParentId == null).ToListAsync();
+    }
+
+    public async Task<List<Category>> GetSubcategoriesAsync(int parentId)
+    {
+        return await _db.Table<Category>().Where(c => c.ParentId == parentId).ToListAsync();
+    }
+
+    public Task<int> DeleteAsync(Category category)
+    {
+        return _db.DeleteAsync(category);
+    }
+
+    public async Task InsertCategoryAsync(Category category)
+    {
+        await _db.InsertAsync(category);
+    }
+
+    public Task<int> UpdateCategoryAsync(Category category)
+    {
+        return _db.UpdateAsync(category);
+    }
 
 
 }

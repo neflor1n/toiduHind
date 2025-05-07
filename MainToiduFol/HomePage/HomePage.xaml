@@ -2,12 +2,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:local="clr-namespace:toiduHind.MainToiduFol.HomePage"
              x:Class="toiduHind.MainToiduFol.HomePage.HomePage"
              BackgroundColor="White">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <local:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <Grid RowDefinitions="Auto, *">
 
-        <!-- Верхняя панель -->
+        <!-- Ülemine paneel -->
         <Grid BackgroundColor="Black" Padding="15,50,15,15" Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -31,12 +39,11 @@
 
         </Grid>
 
-        <!-- Основной контент -->
+        <!-- Põhisisu -->
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Padding="15" Spacing="15">
 
-                
-                <!-- Первый Expander -->
+                <!-- Esimene Expander -->
                 <toolkit:Expander>
                     <toolkit:Expander.Header>
                         <Frame BackgroundColor="#F0F0F0"
@@ -52,7 +59,7 @@
                     <Label Text="List of discounts..." Padding="10"/>
                 </toolkit:Expander>
 
-                <!-- Второй Expander -->
+                <!-- Teine Expander -->
                 <toolkit:Expander>
                     <toolkit:Expander.Header>
                         <Frame BackgroundColor="#F0F0F0"
@@ -68,26 +75,51 @@
                     <Label Text="Nearby stores..." Padding="10"/>
                 </toolkit:Expander>
 
+                <!-- Поисковая строка -->
+                <SearchBar x:Name="ProductSearchBar" 
+                    Placeholder="Otsi tooteid..."
+                    SearchButtonPressed="OnSearchButtonPressed"
+                    TextChanged="OnSearchTextChanged" 
+                    CancelButtonColor="#007bff"
+                    Margin="0,0,0,10"/>       
+
 
                 <CollectionView x:Name="ProductsCollection" SelectionMode="None">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <toolkit:Expander>
+                            <toolkit:Expander Margin="0,4">
                                 <toolkit:Expander.Header>
-                                    <Frame BackgroundColor="#EFEFEF" CornerRadius="8" Padding="10" Margin="5">
-                                        <Label Text="{Binding ProductName}" FontSize="18" FontAttributes="Bold" />
+                                    <Frame BackgroundColor="#EFEFEF" 
+                           CornerRadius="8" 
+                           Padding="10" 
+                           Margin="5">
+                                        <Label Text="{Binding ProductName}" 
+                               FontSize="18" 
+                               FontAttributes="Bold" />
                                     </Frame>
                                 </toolkit:Expander.Header>
                                 <VerticalStackLayout Padding="10" Spacing="8">
-                                    <CollectionView ItemsSource="{Binding Variants}" SelectionMode="None">
+                                    <CollectionView ItemsSource="{Binding Variants}" 
+                                    SelectionMode="None">
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                                <Frame BorderColor="LightGray" CornerRadius="5" Padding="8" Margin="3">
+                                                <Frame BorderColor="LightGray" 
+                                       CornerRadius="5" 
+                                       Padding="8" 
+                                       Margin="3">
                                                     <VerticalStackLayout>
-                                                        <Label Text="{Binding Brand}" FontSize="16" />
-                                                        <Label Text="{Binding Price, StringFormat='Hind: {0:C}'}" FontSize="16" TextColor="Green"/>
-                                                        <Label Text="{Binding Discount, StringFormat='Soodushind: {0:C}'}" FontSize="14" TextColor="Red" IsVisible="{Binding Discount, Converter={StaticResource NullToVisibilityConverter}}" />
-                                                        <Label Text="{Binding StoreName}" FontSize="14" TextColor="Gray" />
+                                                        <Label Text="{Binding Brand}" 
+                                               FontSize="16" />
+                                                        <Label Text="{Binding Price, StringFormat='Hind: {0:C}'}" 
+                                               FontSize="16" 
+                                               TextColor="Green"/>
+                                                        <Label Text="{Binding Discount, StringFormat='Soodushind: {0:C}'}" 
+                                               FontSize="14" 
+                                               TextColor="Red" 
+                                               IsVisible="{Binding Discount, Converter={StaticResource NullToVisibilityConverter}}" />
+                                                        <Label Text="{Binding StoreName}" 
+                                               FontSize="14" 
+                                               TextColor="Gray" />
                                                     </VerticalStackLayout>
                                                 </Frame>
                                             </DataTemplate>
@@ -103,7 +135,7 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <!-- Затемнение -->
+        <!-- Varjutus -->
         <BoxView x:Name="Overlay"
                  BackgroundColor="Black"
                  Opacity="0"
@@ -115,7 +147,7 @@
             </BoxView.GestureRecognizers>
         </BoxView>
 
-        <!-- Меню -->
+        <!-- Menüü -->
         <Frame x:Name="SlidingMenu"
                BackgroundColor="#292929"
                Padding="15"
@@ -130,29 +162,29 @@
 
             <VerticalStackLayout Spacing="15">
 
-                <!-- Заголовок Menu с иконкой настроек -->
+                <!-- Menüü pealkiri seadete ikooniga -->
                 <Grid ColumnDefinitions="*,Auto" Padding="0,0,0,10">
                     <Label Text="Menu"
-               TextColor="White"
-               FontAttributes="Bold"
-               FontSize="22"
-               VerticalOptions="Center"
-               HorizontalOptions="Start"/>
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           FontSize="22"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"/>
 
                     <ImageButton Source="settings.png"
-                     WidthRequest="24"
-                     HeightRequest="24"
-                     BackgroundColor="Transparent"
-                     Clicked="OnSettingsClicked"
-                     HorizontalOptions="End"
-                     VerticalOptions="Center"
-                     Margin="0,0,5,0"/>
+                                 WidthRequest="24"
+                                 HeightRequest="24"
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnSettingsClicked"
+                                 HorizontalOptions="End"
+                                 VerticalOptions="Center"
+                                 Margin="0,0,5,0"/>
                 </Grid>
 
-                <!-- Разделитель -->
+                <!-- Eraldaja -->
                 <BoxView HeightRequest="1" BackgroundColor="Gray" Opacity="0.5"/>
 
-                <!-- Кнопки категорий -->
+                <!-- Kategooria nupud -->
                 <Button Text="Lihad" BackgroundColor="Transparent" TextColor="White" FontSize="18" Clicked="OnOptionSelected"/>
                 <Button Text="Kalad" BackgroundColor="Transparent" TextColor="White" FontSize="18" Clicked="OnOptionSelected"/>
                 <Button Text="Munad" BackgroundColor="Transparent" TextColor="White" FontSize="18" Clicked="OnOptionSelected"/>

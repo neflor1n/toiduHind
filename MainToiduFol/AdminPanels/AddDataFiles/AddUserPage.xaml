@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="toiduHind.MainToiduFol.AdminPanels.AddUserPage"
+             Title="Add User">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Add New User" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+            <Label Text="Name" FontAttributes="Bold"/>
+            <Entry x:Name="NameEntry" Placeholder="Enter user name"/>
+
+            <Label Text="Email" FontAttributes="Bold"/>
+            <Entry x:Name="EmailEntry" Placeholder="Enter email" Keyboard="Email"/>
+
+            <Label Text="Password" FontAttributes="Bold"/>
+            <Entry x:Name="PasswordEntry" Placeholder="Enter password" IsPassword="True"/>
+
+            <Label Text="Confirm Password" FontAttributes="Bold"/>
+            <Entry x:Name="ConfirmPasswordEntry" Placeholder="Confirm password" IsPassword="True"/>
+
+            <Label Text="Role" FontAttributes="Bold"/>
+            <Picker x:Name="RolePicker">
+                <Picker.Items>
+                    <x:String>User</x:String>
+                    <x:String>Admin</x:String>
+                </Picker.Items>
+                <Picker.SelectedIndex>0</Picker.SelectedIndex>
+            </Picker>
+
+            <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Center">
+                <Button Text="Save" Clicked="OnSaveClicked" BackgroundColor="#007bff" TextColor="White" WidthRequest="120"/>
+                <Button Text="Cancel" Clicked="OnCancelClicked" BackgroundColor="#6c757d" TextColor="White" WidthRequest="120"/>
+            </StackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

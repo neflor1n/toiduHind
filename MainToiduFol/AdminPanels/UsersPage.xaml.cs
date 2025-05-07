@@ -1,12 +1,15 @@
-using toiduHind.DatabaseModels;
+п»їusing toiduHind.DatabaseModels;
 
 namespace toiduHind.MainToiduFol.AdminPanels;
 
 public partial class UsersPage : ContentPage
 {
+    private Database _database;
+
     public UsersPage()
     {
         InitializeComponent();
+        _database = new Database();
     }
 
     protected override async void OnAppearing()
@@ -17,63 +20,70 @@ public partial class UsersPage : ContentPage
 
     private async Task LoadUsersAsync()
     {
-        var users = await App.Database.GetAllUsersAsync();
+        var users = await _database.GetAllUsersAsync();
         UsersCollection.ItemsSource = users;
     }
-
-    private async void OnAddUserClicked(object sender, EventArgs e)
-    {
-        string name = await DisplayPromptAsync("Lisa kasutaja", "Sisesta nimi:");
-        string email = await DisplayPromptAsync("Lisa kasutaja", "Sisesta email:");
-        string password = await DisplayPromptAsync("Lisa kasutaja", "Sisesta parool:");
-
-        if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
-        {
-            await DisplayAlert("Ошибка", "Все поля обязательны для заполнения.", "OK");
-            return;
-        }
-
-        try
-        {
-            var user = new User
-            {
-                Name = name,
-                Email = email,
-                Password = password,
-                Role = "User"
-            };
-
-            await App.Database.AddUserAsync(user);
-            await LoadUsersAsync();
-            await DisplayAlert("Успех", "Пользователь добавлен.", "OK");
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Ошибка", ex.Message, "OK");
-        }
-    }
-
-
 
     private async void OnDeleteUserClicked(object sender, EventArgs e)
     {
         var button = sender as Button;
         if (button?.CommandParameter is int userId)
         {
-            bool confirm = await DisplayAlert("Удаление", "Вы уверены, что хотите удалить этого пользователя?", "Да", "Нет");
+            bool confirm = await DisplayAlert("РЈРґР°Р»РµРЅРёРµ", "Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ СЌС‚РѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ?", "Р”Р°", "РќРµС‚");
             if (confirm)
             {
                 try
                 {
-                    await App.Database.DeleteUserByIdAsync(userId);
+                    await _database.DeleteUserByIdAsync(userId);
                     await LoadUsersAsync();
-                    await DisplayAlert("Успех", "Пользователь удален.", "OK");
+                    await DisplayAlert("РЈСЃРїРµС…", "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СѓРґР°Р»РµРЅ.", "OK");
                 }
                 catch (Exception ex)
                 {
-                    await DisplayAlert("Ошибка", $"Не удалось удалить пользователя: {ex.Message}", "OK");
+                    await DisplayAlert("РћС€РёР±РєР°", $"РќРµ СѓРґР°Р»РѕСЃСЊ СѓРґР°Р»РёС‚СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ: {ex.Message}", "OK");
                 }
             }
         }
     }
+
+    private async void OnAddUserClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new AddUserPage());
+    }
+
+    private async void OnUserTapped(object sender, TappedEventArgs e)
+    {
+        if (e.Parameter is int userId)
+        {
+            try
+            {
+                // Get the user details
+                var user = await _database.GetUserByIdAsync(userId);
+                if (user != null)
+                {
+                    // Show user details
+                    string details = $"ID: {user.Id}\n" +
+                                    $"Name: {user.Name}\n" +
+                                    $"Email: {user.Email}\n" +
+                                    $"Role: {user.Role}\n";
+
+                    await DisplayAlert($"User Details: {user.Name}", details, "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Failed to load user details: {ex.Message}", "OK");
+            }
+        }
+    }
+
+    private async void OnEditUserClicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        if (button?.CommandParameter is int userId)
+        {
+            await Navigation.PushAsync(new EditUserPage(userId));
+        }
+    }
+
 }

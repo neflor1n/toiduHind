@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="toiduHind.MainToiduFol.AdminPanels.EditDataFiles.EditProductPage"
+             Title="Edit Product">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Edit Product" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+            <Label Text="Name" FontAttributes="Bold"/>
+            <Entry x:Name="NameEntry" Placeholder="Enter product name"/>
+
+            <Label Text="Brand" FontAttributes="Bold"/>
+            <Entry x:Name="BrandEntry" Placeholder="Enter brand name"/>
+
+            <Label Text="Category" FontAttributes="Bold"/>
+            <Picker x:Name="CategoryPicker"/>
+
+            <Label Text="Description" FontAttributes="Bold"/>
+            <Editor x:Name="DescriptionEditor" HeightRequest="100" Placeholder="Enter product description"/>
+
+            <Label Text="Image URL" FontAttributes="Bold"/>
+            <Entry x:Name="ImageUrlEntry" Placeholder="Enter image URL"/>
+
+            <Label Text="Price Information" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,15,0,0"/>
+
+            <Label Text="Store" FontAttributes="Bold"/>
+            <Picker x:Name="StorePicker"/>
+
+            <Label Text="Current Price" FontAttributes="Bold"/>
+            <Entry x:Name="PriceEntry" Placeholder="Enter price" Keyboard="Numeric"/>
+
+            <Label Text="Discount Price (optional)" FontAttributes="Bold"/>
+            <Entry x:Name="DiscountPriceEntry" Placeholder="Enter discount price" Keyboard="Numeric"/>
+
+            <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Center" Margin="0,15,0,0">
+                <Button Text="Save Changes" Clicked="OnSaveClicked" BackgroundColor="#007bff" TextColor="White" WidthRequest="140"/>
+                <Button Text="Cancel" Clicked="OnCancelClicked" BackgroundColor="#6c757d" TextColor="White" WidthRequest="120"/>
+            </StackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
