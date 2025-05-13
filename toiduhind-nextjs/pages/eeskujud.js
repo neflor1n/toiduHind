@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
-import '../styles/eeskujud.css';
+import '../styles/eeskujud.module.css';
 
 export default function Eeskujud() {
   return (

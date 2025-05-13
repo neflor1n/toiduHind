@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
-import '../styles/eesmark.css';
+import '../styles/eesmark.module.css';
 
 export default function Eesmark() {
   return (
