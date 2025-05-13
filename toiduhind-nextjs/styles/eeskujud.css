@@ -1,11 +1,4 @@
-body {
-    background-color: #f7f9fc;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  h1, h2, h3, h5 {
-    color: #1f2937;
-  }
+
 
   .full-width-header {
     width: 100%;
@@ -81,7 +74,4 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   }
   
-  ul li {
-    line-height: 1.6;
-  }
   

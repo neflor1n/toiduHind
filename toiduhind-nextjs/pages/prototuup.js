@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
-import '../styles/prototuup.module.css';
 
 export default function Prototuup() {
   return (

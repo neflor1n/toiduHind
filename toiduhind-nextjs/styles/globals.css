@@ -1,0 +1,14 @@
+/* styles/globals.css */
+
+body {
+    background-color: #f7f9fc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  img.shadow {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+
+  h1, h2, h3, h5 {
+    color: #1f2937;
+  }
