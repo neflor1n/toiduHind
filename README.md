@@ -6,7 +6,7 @@
 
 ### Toiduhind.ee veebisait
 
-[Toiduhind](https://toiduhind.vercel.app/)
+[Toiduhind.ee](https://toiduhind.vercel.app/)
 
 ### Projekti dokumentatsioon
 
