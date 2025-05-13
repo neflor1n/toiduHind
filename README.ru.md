@@ -3,6 +3,11 @@
 [🇪🇪 Eesti](README.md) | [🇷🇺 Русский](README.ru.md) | [🇬🇧 English](README.en.md)
 
 ## ТАЛЛИННСКИЙ ЦЕНТР ПРОМЫШЛЕННОГО ОБРАЗОВАНИЯ
+
+### Сайт Toiduhind.ee
+
+[Toiduhind.ee](https://toiduhind.vercel.app/)
+
 ### Документация проекта
 
 - **Руководители**: Ирина Меркулова & Марина Олейник
