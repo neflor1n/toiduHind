@@ -3,6 +3,11 @@
 [🇪🇪 Eesti](README.md) | [🇷🇺 Русский](README.ru.md) | [🇬🇧 English](README.en.md)
 
 ## TALLINNA TÖÖSTUSHARIDUSKESKUS
+
+### Toiduhind.ee veebisait
+
+[Toiduhind](https://toiduhind.vercel.app/)
+
 ### Projekti dokumentatsioon
 
 - **Juhendaja**: Irina Merkulova & Marina Oleinik
