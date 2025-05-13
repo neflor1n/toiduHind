@@ -1,0 +1,94 @@
+body {
+    background-color: #f7f9fc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .full-width-header {
+    width: 100%;
+    background: linear-gradient(to right, #1f2937, #111827);
+    padding: 1.5rem 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 2rem;
+  }
+  
+  .custom-title {
+    color: #ffffff;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .custom-wrapper {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  }
+  
+  .goal-list {
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #333;
+  }
+  
+  .goal-list li {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .goal-list li::before {
+    content: '✅';
+    color: #0d6efd;
+  }
+  
+  .future-section ul.goal-list li::before {
+    content: '🔮';
+    color: #6f42c1;
+  }
+  
+  img.shadow {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  .eesmark-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  
+  .eesmark-section > div {
+    flex: 1 1 45%;
+    text-align: center;
+  }
+  
+  .future-section {
+    margin-top: 3rem;
+    text-align: center;
+  }
+  
+  .future-section img {
+    margin: 0 auto;
+    display: block;
+  }
+  
+  .future-section ul.goal-list {
+    margin-top: 2rem;
+    text-align: left;
+    display: inline-block;
+  }
+  

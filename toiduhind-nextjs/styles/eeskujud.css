@@ -1,0 +1,87 @@
+body {
+    background-color: #f7f9fc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  h1, h2, h3, h5 {
+    color: #1f2937;
+  }
+
+  .full-width-header {
+    width: 100%;
+    background: linear-gradient(to right, #1f2937, #111827);
+    padding: 1.5rem 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 2rem;
+  }
+
+  .custom-title {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  .eeskuju-section {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+    align-items: flex-start;
+  }
+  
+  .eeskuju-section h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .eeskuju-section ul {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+    margin-left: 2.5rem;
+  }
+
+  .eeskuju-section-content {
+    margin-left: 50px;
+    margin-top: 110px;
+
+  }
+  
+  .eeskuju-section li::marker {
+    color: #0d6efd;
+  }
+  
+
+  .table th, .table td {
+    vertical-align: middle;
+  }
+  
+  .table thead th {
+    background-color: #343a40;
+    color: #ffffff;
+  }
+  
+  .table tbody tr:nth-child(even) {
+    background-color: #f0f4f8;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #e2e6ea;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  img.shadow {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  ul li {
+    line-height: 1.6;
+  }
+  

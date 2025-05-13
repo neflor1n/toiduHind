@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
+import '../styles/custom.css';
 
 export default function Home() {
   return (
@@ -10,38 +11,54 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
         <meta name="Description" content="Enter your description here" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
       </Head>
 
-      <main className="container mt-4">
-        <h1>Projekt Toiduhind.ee</h1>
-        <Navbar />
+      <header className="full-width-header">
+        <div className="header-content">
+          <Image
+            src="/assets/img/logo.png"
+            alt="logo"
+            width={60}
+            height={60}
+            className="logo-img"
+          />
+          <h1 className="custom-title">Projekt Toiduhind.ee</h1>
+        </div>
+      </header>
 
-        <p><strong>Toiduhind</strong> on meie ühisprojekt, mille eesmärk on luua mobiilirakendus toidukaupade hindade võrdlemiseks Eesti suuremates jaekettides.</p>
+      <Navbar />
 
-        <p>Projektis osaleb <strong>3 meeskonnaliiget</strong> – igaüks oma rolli ja vastutusalaga (arendus, disain, andmestruktuur):</p>
+      <main className="custom-wrapper container mt-4">
+        <section className="intro-section shadow p-4 rounded bg-light">
+          <p><strong>Toiduhind</strong> on meie ühisprojekt, mille eesmärk on luua mobiilirakendus toidukaupade hindade võrdlemiseks Eesti suuremates jaekettides.</p>
 
-        <ul>
-          <li><strong>Vsevolod Tsarev</strong> – disainer / UX</li>
-          <li><strong>Bogdan Sergachev</strong> – arendaja</li>
-          <li><strong>Gleb Sotsjov</strong> – andmestruktuur ja loogika</li>
-        </ul>
+          <p>Projektis osaleb <strong>3 meeskonnaliiget</strong> – igaüks oma rolli ja vastutusalaga (arendus, disain, andmestruktuur):</p>
 
-        <p>Projekti juhendab meie õpetaja <strong>mrs. Merkulova</strong>, kes tegutseb juhendaja ja koordineerijana, toetades meid nii tehniliselt kui ka metoodiliselt.</p>
+          <ul className="team-list">
+            <li><i className="fas fa-user-pen"></i> <strong>Vsevolod Tsarev</strong> – disainer / UX</li>
+            <li><i className="fas fa-code"></i> <strong>Bogdan Sergachev</strong> – arendaja</li>
+            <li><i className="fas fa-database"></i> <strong>Gleb Sotsjov</strong> – andmestruktuur ja loogika</li>
+          </ul>
 
-        <p>Tegemist on <strong>õppimise eesmärgil loodud praktilise projektiga</strong>, mille kaudu omandame oskusi tarkvaraarenduses, mobiiliarenduses, UX-disainis, andmehalduses ja tiimitöös.</p>
+          <p>Projekti juhendab meie õpetaja <strong>mrs. Merkulova</strong>, kes tegutseb juhendaja ja koordineerijana, toetades meid nii tehniliselt kui ka metoodiliselt.</p>
 
-        <div className="text-center">
+          <p>Tegemist on <strong>õppimise eesmärgil loodud praktilise projektiga</strong>, mille kaudu omandame oskusi tarkvaraarenduses, mobiiliarenduses, UX-disainis, andmehalduses ja tiimitöös.</p>
+
+          <div className="text-center mt-5">
           <Image
             src="/assets/img/babka.jpg"
             alt="babuwka"
             width={500}
             height={300}
-            className="img-fluid"
+            className="img-fluid rounded shadow-lg"
           />
-          <p style={{ fontSize: '12px' }}>Allikas: https://pikabu.ru/story/kak_babka_s_vnukom_ukrala_vodu_i_sukhariki_10827923</p>
+          <p className="custom-caption">Allikas: https://pikabu.ru/story/kak_babka_s_vnukom_ukrala_vodu_i_sukhariki_10827923</p>
         </div>
+        </section>
+
+        
       </main>
     </>
   );
