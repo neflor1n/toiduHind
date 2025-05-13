@@ -3,6 +3,11 @@
 [🇪🇪 Eesti](README.md) | [🇷🇺 Русский](README.ru.md) | [🇬🇧 English](README.en.md)
 
 ## TALLINN INDUSTRIAL EDUCATION CENTER
+
+### Toiduhind.ee website
+
+[Toiduhind.ee](https://toiduhind.vercel.app/)
+
 ### Project Documentation
 
 - **Supervisors**: Irina Merkulova & Marina Oleinik
