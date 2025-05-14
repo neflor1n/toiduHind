@@ -15,7 +15,7 @@ public partial class LoginForm : ContentPage
     private void OnTogglePasswordVisibility(object sender, EventArgs e)
     {
         PasswordEntry.IsPassword = !PasswordEntry.IsPassword;
-        ShowPass.ImageSource = PasswordEntry.IsPassword ? "closed_eye.png" : "open_eye.png";
+        ShowPass.ImageSource = PasswordEntry.IsPassword ? "closed_eye_white.png" : "opened_eye_white.png";
     }
 
     private async void LoginBtn_Clicked(object sender, EventArgs e)

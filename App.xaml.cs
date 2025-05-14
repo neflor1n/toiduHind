@@ -1,4 +1,5 @@
-﻿using toiduHind.DatabaseModels;
+﻿using System.Globalization;
+using toiduHind.DatabaseModels;
 
 namespace toiduHind
 {
@@ -10,6 +11,11 @@ namespace toiduHind
 
         public App()
         {
+            var culture = new CultureInfo("et-EE"); 
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+
+
             InitializeComponent();
 
             Database = new Database();

@@ -2,64 +2,104 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="toiduHind.RegJaAut.LoginForm"
-             Title="Login Form">
+             Title="LoginForm">
+
     <ContentPage.Resources>
+        <!-- Цвета -->
+        <SolidColorBrush x:Key="PrimaryBrush">
+            <SolidColorBrush.Color>
+                <AppThemeBinding Light="#BB0826" Dark="#E03145" />
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+
+        <SolidColorBrush x:Key="AccentBrush">
+            <SolidColorBrush.Color>
+                <AppThemeBinding Light="#FFFFFF" Dark="#FFFFFF" />
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+
+        <SolidColorBrush x:Key="BackgroundBrush">
+            <SolidColorBrush.Color>
+                <AppThemeBinding Light="#F5F5F5" Dark="#1A1A1A" />
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+
+        <SolidColorBrush x:Key="EntryBackgroundBrush">
+            <SolidColorBrush.Color>
+                <AppThemeBinding Light="#E5E7EB" Dark="#333333" />
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+
+        <SolidColorBrush x:Key="TextBrush">
+            <SolidColorBrush.Color>
+                <AppThemeBinding Light="#1F2937" Dark="#FFFFFF" />
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+
+        <SolidColorBrush x:Key="SubtitleBrush">
+            <SolidColorBrush.Color>
+                <AppThemeBinding Light="#6B7280" Dark="#CCCCCC" />
+            </SolidColorBrush.Color>
+        </SolidColorBrush>
+
         <!-- Стиль кнопок -->
-        <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="BackgroundColor" Value="#333333"/>
-            <Setter Property="TextColor" Value="White"/>
-            <Setter Property="FontSize" Value="22"/>
-            <Setter Property="CornerRadius" Value="30"/>
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="TextColor" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="CornerRadius" Value="14"/>
             <Setter Property="HeightRequest" Value="50"/>
-            <Setter Property="Shadow" Value="3,3,6,0.3"/>
-            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="Padding" Value="12,0"/>
             <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
 
-        <!-- Стиль для ввода -->
-        <Style x:Key="EntryStyle" TargetType="Entry">
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="TextColor" Value="White"/>
-            <Setter Property="BackgroundColor" Value="#333333"/>
+        <!-- Стиль Entry -->
+        <Style x:Key="StyledEntry" TargetType="Entry">
+            <Setter Property="Background" Value="{StaticResource EntryBackgroundBrush}"/>
+            <Setter Property="TextColor" Value="{StaticResource TextBrush}"/>
+            <Setter Property="FontSize" Value="16"/>
             <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="Margin" Value="0,5"/>
         </Style>
 
-        <!-- Стиль для заголовков -->
-        <Style x:Key="LabelStyle" TargetType="Label">
-            <Setter Property="FontSize" Value="30"/>
-            <Setter Property="TextColor" Value="White"/>
+        <!-- Заголовок -->
+        <Style x:Key="TitleLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="TextColor" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
             <Setter Property="HorizontalOptions" Value="Center"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+
+        <!-- Подписи -->
+        <Style x:Key="SubtitleLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextColor" Value="{StaticResource SubtitleBrush}"/>
+            <Setter Property="Margin" Value="0,5"/>
         </Style>
     </ContentPage.Resources>
 
-    <ScrollView BackgroundColor="#1A1A1A">
-        <VerticalStackLayout Padding="20" Spacing="20">
-            <Label Text="Logi sisse" Style="{StaticResource LabelStyle}"/>
+    <ScrollView Background="{StaticResource BackgroundBrush}">
+        <VerticalStackLayout Padding="25" Spacing="20">
+            <Label Text="Logi sisse" Style="{StaticResource TitleLabel}" />
 
-            <Label Text="Email:" Style="{StaticResource LabelStyle}" Padding="0, 30,0,0"/>
-            <!-- Использование Frame для скругленных углов -->
-            <Frame BorderColor="White" BackgroundColor="#333333" CornerRadius="25" Padding="0">
+            <Label Text="Email:" Style="{StaticResource SubtitleLabel}" />
+            <Entry x:Name="EmailEntry" Placeholder="Sisestage oma email" Keyboard="Email" Style="{StaticResource StyledEntry}" />
 
-                <Entry x:Name="EmailEntry" Placeholder="Sisestage oma email" Keyboard="Email" Style="{StaticResource EntryStyle}"/>
-            </Frame>
-
-            <Label Text="Parool:" Style="{StaticResource LabelStyle}"/>
-
-            <HorizontalStackLayout>
-                <Frame BorderColor="White" BackgroundColor="#333333" CornerRadius="25" Padding="0">
-                    <Entry x:Name="PasswordEntry" Placeholder="Sisestage oma parool" IsPassword="True" Style="{StaticResource EntryStyle}" WidthRequest="300"/>
-                </Frame>
-                <Button x:Name="ShowPass" Clicked="OnTogglePasswordVisibility" BackgroundColor="Transparent">
+            <Label Text="Parool:" Style="{StaticResource SubtitleLabel}" />
+            <HorizontalStackLayout Spacing="5">
+                <Entry x:Name="PasswordEntry" Placeholder="Sisestage oma parool" IsPassword="True" Style="{StaticResource StyledEntry}" WidthRequest="260" />
+                <Button x:Name="ShowPass"
+                        Clicked="OnTogglePasswordVisibility"
+                        BackgroundColor="Transparent"
+                        WidthRequest="80"
+                        HeightRequest="80">
                     <Button.ImageSource>
-                        <FileImageSource File="closed_eye.png"/>
+                        <FileImageSource File="closed_eye_white.png" />
                     </Button.ImageSource>
-                    <Button.WidthRequest>60</Button.WidthRequest>
-                    <Button.HeightRequest>60</Button.HeightRequest>
                 </Button>
             </HorizontalStackLayout>
 
-            <Button Text="Logi sisse" Style="{StaticResource ButtonStyle}" Clicked="LoginBtn_Clicked"/>
+            <Button Text="Logi sisse" Style="{StaticResource PrimaryButton}" Clicked="LoginBtn_Clicked" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
