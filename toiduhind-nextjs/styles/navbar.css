@@ -1,7 +1,8 @@
 .navbar {
-    background-color: #1f2937; /* dark gray */
+    background: linear-gradient(180deg, #BB0826 0%, #E31B23 50%, #F8094A 100%);
     padding: 1rem 2rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
+    background: transparent;
 }
 
 .navbar-list {
@@ -25,5 +26,5 @@
 }
 
 .navbar-list li a:hover {
-    color: #3b82f6; /* blue-500 */
+    color: #d06969; /* blue-500 */
 }

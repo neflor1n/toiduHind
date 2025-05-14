@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
-
+import Footer from '../components/Footer';
 export default function Eeskujud() {
   return (
     <>
@@ -14,20 +14,22 @@ export default function Eeskujud() {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
       </Head>
 
-      <header className="full-width-header">
-        <div className="header-content">
-          <Image
-            src="/assets/img/logo.png"
-            alt="logo"
-            width={60}
-            height={60}
-            className="logo-img"
-          />
-          <h1 className="custom-title">Eeskujud ja Võrdlus</h1>
-        </div>
-      </header>
+      <div className="header-wrapper">
+        <header className="full-width-header">
+          <div className="header-content">
+            <Image
+              src="/assets/img/logo.png"
+              alt="logo"
+              width={60}
+              height={60}
+              className="logo-img"
+            />
+            <h1 className="custom-title">Eeskujud ja Võrdlus</h1>
+          </div>
+        </header>
 
-      <Navbar />
+        <Navbar />
+      </div>
 
       <main className="custom-wrapper container mt-5">
         <section className="eeskuju-section d-flex gap-4 mb-5">
@@ -101,6 +103,9 @@ export default function Eeskujud() {
           </div>
         </section>
       </main>
+
+      <Footer />
+
     </>
   );
 }

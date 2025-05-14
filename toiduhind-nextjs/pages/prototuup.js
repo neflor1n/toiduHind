@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export default function Prototuup() {
   return (
@@ -14,15 +15,22 @@ export default function Prototuup() {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
       </Head>
 
-      <header className="full-width-header">
-        <div className="header-content">
-          <Image src="/assets/img/logo.png" alt="logo" width={60} height={60} className="logo-img" />
-          <h1 className="custom-title">Prototüüp</h1>
-        </div>
-      </header>
+      <div className="header-wrapper">
+        <header className="full-width-header">
+          <div className="header-content">
+            <Image
+              src="/assets/img/logo.png"
+              alt="logo"
+              width={60}
+              height={60}
+              className="logo-img"
+            />
+            <h1 className="custom-title">Prototüüp</h1>
+          </div>
+        </header>
 
-      <Navbar />
-
+        <Navbar />
+      </div>
       <main className="custom-wrapper container mt-5">
         <section className="text-center">
           <h2 className="mb-4">Meie Logo</h2>
@@ -30,6 +38,9 @@ export default function Prototuup() {
           <p className="mt-3 text-muted">Lihtne, arusaadav ja toidukorviga sümboliseeritud – meie rakenduse nägu</p>
         </section>
       </main>
+
+      <Footer />
+
     </>
   );
 }

@@ -1,18 +1,25 @@
 .full-width-header {
-    width: 100%;
-    background: linear-gradient(to right, #1f2937, #111827);
-    padding: 1.5rem 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  }
-  
-  .header-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 0 2rem;
-  }
+  width: 100%;
+  background: linear-gradient(180deg, #BB0826 0%, #E31B23 50%, #F8094A 100%);
+  padding: 1.5rem 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 2rem;
+}
+
+.header-wrapper {
+  background: linear-gradient(180deg, #BB0826 0%, #E31B23 50%, #F8094A 100%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
   
   .custom-title {
     color: #ffffff;

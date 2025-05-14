@@ -5,6 +5,7 @@ import '../styles/eesmark.css';
 import '../styles/eeskujud.css';
 import '../styles/prototuup.css';
 import '../styles/custom.css';
+import '../styles/footer.css';
 
 export default function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />;

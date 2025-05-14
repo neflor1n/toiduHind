@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export default function Home() {
   return (
@@ -14,20 +15,23 @@ export default function Home() {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
       </Head>
 
-      <header className="full-width-header">
-        <div className="header-content">
-          <Image
-            src="/assets/img/logo.png"
-            alt="logo"
-            width={60}
-            height={60}
-            className="logo-img"
-          />
-          <h1 className="custom-title">Projekt Toiduhind.ee</h1>
-        </div>
-      </header>
+      <div className="header-wrapper">
+        <header className="full-width-header">
+          <div className="header-content">
+            <Image
+              src="/assets/img/logo.png"
+              alt="logo"
+              width={60}
+              height={60}
+              className="logo-img"
+            />
+            <h1 className="custom-title">Projekt Toiduhind.ee</h1>
+          </div>
+        </header>
 
-      <Navbar />
+        <Navbar />
+      </div>
+
 
       <main className="custom-wrapper container mt-4">
         <section className="intro-section shadow p-4 rounded bg-light">
@@ -41,7 +45,7 @@ export default function Home() {
             <li><i className="fas fa-database"></i> <strong>Gleb Sotsjov</strong> – andmestruktuur ja loogika</li>
           </ul>
 
-          <p>Projekti juhendab meie õpetaja <strong>mrs. Merkulova</strong>, kes tegutseb juhendaja ja koordineerijana, toetades meid nii tehniliselt kui ka metoodiliselt.</p>
+          <p>Projekti juhendab meie õpetaja <strong>Irina Merkulova</strong>, kes tegutseb juhendaja ja koordineerijana, toetades meid nii tehniliselt kui ka metoodiliselt.</p>
 
           <p>Tegemist on <strong>õppimise eesmärgil loodud praktilise projektiga</strong>, mille kaudu omandame oskusi tarkvaraarenduses, mobiiliarenduses, UX-disainis, andmehalduses ja tiimitöös.</p>
 
@@ -53,12 +57,15 @@ export default function Home() {
             height={300}
             className="img-fluid rounded shadow-lg"
           />
-          <p className="custom-caption">Allikas: https://pikabu.ru/story/kak_babka_s_vnukom_ukrala_vodu_i_sukhariki_10827923</p>
+          <p className="custom-caption">Allikas: <a href='https://pikabu.ru/story/kak_babka_s_vnukom_ukrala_vodu_i_sukhariki_10827923'>https://pikabu.ru/story/kak_babka_s_vnukom_ukrala_vodu_i_sukhariki_10827923</a></p>
         </div>
         </section>
 
         
       </main>
+
+
+      <Footer />
     </>
   );
 }
