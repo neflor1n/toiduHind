@@ -19,10 +19,10 @@ export default function Eesmark() {
         <header className="full-width-header">
           <div className="header-content">
             <Image
-              src="/assets/img/logo.png"
+              src="/assets/img/toiduhindWhite.png"
               alt="logo"
-              width={60}
-              height={60}
+              width={80}
+              height={80}
               className="logo-img"
             />
             <h1 className="custom-title">Toiduhind - Eesmärk ja Visioon</h1>
@@ -47,11 +47,11 @@ export default function Eesmark() {
             <h3 className="text-center">Miks valida Toiduhind.ee?</h3>
             <Image src="/assets/img/aidataInimestel.png" width={400} height={300} alt="aidata inimestel" className="rounded shadow" />
             <ul className="goal-list mt-3">
-              <li>➡️ Aidata inimestele</li>
-              <li>➡️ Säästa raha</li>
-              <li>➡️ Leida parimad pakkumised</li>
-              <li>➡️ Teha teadlikke valikuid</li>
-              <li>➡️ Jälgida hindade muutumist ajas</li>
+              <li><i class="fa-solid fa-arrow-right"></i> Aidata inimestele</li>
+              <li><i class="fa-solid fa-arrow-right"></i> Säästa raha</li>
+              <li><i class="fa-solid fa-arrow-right"></i> Leida parimad pakkumised</li>
+              <li><i class="fa-solid fa-arrow-right"></i> Teha teadlikke valikuid</li>
+              <li><i class="fa-solid fa-arrow-right"></i> Jälgida hindade muutumist ajas</li>
             </ul>
           </div>
 
@@ -59,11 +59,11 @@ export default function Eesmark() {
             <h3 className="text-center">Peamised Funktsioonid</h3>
             <Image src="/assets/img/peamised.png" width={400} height={300} alt="peamised funktsioonid" className="rounded shadow" />
             <ul className="goal-list mt-3">
-              <li>➡️ Hindade võrdlus poodide lõikes</li>
-              <li>➡️ Tooteotsing ja filtreerimine</li>
-              <li>➡️ Hinnamuutuste ajalugu graafikutega</li>
-              <li>➡️ Ostunimekiri koos hinnainfo ja soodushindade teavitustega</li>
-              <li>➡️ Näitab, kus toode on kõige odavam sinu lähedal</li>
+              <li><i class="fa-solid fa-arrow-right"></i> Hindade võrdlus poodide lõikes</li>
+              <li><i class="fa-solid fa-arrow-right"></i> Tooteotsing ja filtreerimine</li>
+              <li><i class="fa-solid fa-arrow-right"></i> Hinnamuutuste ajalugu graafikutega</li>
+              <li><i class="fa-solid fa-arrow-right"></i> Ostunimekiri koos hinnainfo ja soodushindade teavitustega</li>
+              <li><i class="fa-solid fa-arrow-right"></i> Näitab, kus toode on kõige odavam sinu lähedal</li>
             </ul>
           </div>
         </section>
@@ -74,11 +74,11 @@ export default function Eesmark() {
             <Image src="/assets/img/tulevikuplaanid.png" width={400} height={300} alt="tulevikuplaanid" className="rounded shadow" />
           </div>
           <ul className="goal-list mt-3 text-center">
-            <li>➡️ Tulevikuplaanide hinnakalkulaator</li>
-            <li>➡️ Hinnakalkulaator poodide lõikes</li>
-            <li>➡️ Hindade võrdlus poodide lõikes</li>
-            <li>➡️ Koostöö kohalike poekettidega</li>
-            <li>➡️ Isikupärastatud teavitused kasutajale</li>
+            <li><i class="fa-solid fa-arrow-right"></i> Tulevikuplaanide hinnakalkulaator</li>
+            <li><i class="fa-solid fa-arrow-right"></i> Hinnakalkulaator poodide lõikes</li>
+            <li><i class="fa-solid fa-arrow-right"></i> Hindade võrdlus poodide lõikes</li>
+            <li><i class="fa-solid fa-arrow-right"></i> Koostöö kohalike poekettidega</li>
+            <li><i class="fa-solid fa-arrow-right"></i> Isikupärastatud teavitused kasutajale</li>
           </ul>
         </section>
       </main>

@@ -18,10 +18,10 @@ export default function Eeskujud() {
         <header className="full-width-header">
           <div className="header-content">
             <Image
-              src="/assets/img/logo.png"
+              src="/assets/img/toiduhindWhite.png"
               alt="logo"
-              width={60}
-              height={60}
+              width={80}
+              height={80}
               className="logo-img"
             />
             <h1 className="custom-title">Eeskujud ja Võrdlus</h1>
