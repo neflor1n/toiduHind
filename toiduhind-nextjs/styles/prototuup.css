@@ -27,3 +27,14 @@
     font-weight: bold;
     margin: 0;
   }
+.screenshot-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.screenshot-item {
+  max-width: 320px;
+  text-align: center;
+}
