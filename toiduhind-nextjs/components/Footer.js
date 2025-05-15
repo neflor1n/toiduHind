@@ -9,7 +9,7 @@ export default function Footer() {
                     Projekti lõi {""}
                     <Link href={'https://taltech.ee/infotehnoloogia-teaduskond/iduprojekt'}>Idu Projektile</Link>
                     {" "}
-                    <Link href={'https://tthk.ee/'}>Tallinna Tööstushariduskeskuse</Link> kontsern
+                    <Link href={'https://tthk.ee/'}>Tallinna Tööstushariduskeskuse</Link> meeskond
                 </p>
             </div>
             <div className='footer-second-content'>

@@ -34,7 +34,7 @@ export default function Prototuup() {
       <main className="custom-wrapper container mt-5">
         <section className="text-center">
           <h2 className="mb-4">Meie Logo</h2>
-          <Image src="/assets/img/logo.png" alt="Toiduhind logo" width={300} height={300} className="rounded shadow" />
+          <Image src="/assets/img/toiduhindBlack.png" alt="Toiduhind logo" width={300} height={300} className="rounded shadow" />
           <p className="mt-3 text-muted">Lihtne, arusaadav ja toidukorviga sümboliseeritud – meie rakenduse nägu</p>
         </section>
 	
