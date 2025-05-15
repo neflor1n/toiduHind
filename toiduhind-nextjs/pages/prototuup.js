@@ -25,7 +25,8 @@ export default function Prototuup() {
               height={80}
               className="logo-img"
             />
-            <h1 className="custom-title">Prototüüp</h1>
+	    <h1 className='custom-title'>Toiduhind.ee</h1>
+            <h1 className="custom-title" style={{marginLeft: '70px'}}>Prototüüp</h1>
           </div>
         </header>
 

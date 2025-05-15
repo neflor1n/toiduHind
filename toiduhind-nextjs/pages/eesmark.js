@@ -25,7 +25,8 @@ export default function Eesmark() {
               height={80}
               className="logo-img"
             />
-            <h1 className="custom-title">Toiduhind - Eesmärk ja Visioon</h1>
+	    <h1 className="custom-title">Toiduhind.ee</h1>
+            <h1 className="custom-title" style={{marginLeft: '70px'}}>Toiduhind - Eesmärk ja Visioon</h1>
           </div>
         </header>
 
