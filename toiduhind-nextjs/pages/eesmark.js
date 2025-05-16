@@ -40,12 +40,10 @@ export default function Eesmark() {
             <strong>Toiduhind.ee</strong> on mobiilirakendus, mis aitab võrrelda toidukaupade hindu erinevates Eesti poodides – nagu Selver, Prisma, Maxima, Coop ja teised. Nii saab leida kiirelt parimad hinnad, olles kas kodus või poes.
           </p>
         </section>
-
-        <h2>Meie eesmärk:</h2>
         
         <section className="eesmark-section d-flex flex-wrap gap-4 mb-5">
           <div className="flex-grow-1">
-            <h3 className="text-center">Miks valida Toiduhind.ee?</h3>
+            <h3 className="text-center">Meie eesmärk</h3>
             <Image src="/assets/img/aidataInimestel.png" width={400} height={300} alt="aidata inimestel" className="rounded shadow" />
             <ul className="goal-list mt-3">
               <li><i className="fa-solid fa-arrow-right"></i> Aidata inimestele</li>
