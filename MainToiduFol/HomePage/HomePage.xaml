@@ -51,12 +51,38 @@
                                HasShadow="True"
                                Padding="10"
                                Margin="0">
-                            <Label Text="Discounts in stores"
+                            <Label Text="Kauplustes allahindlused"
                                    FontSize="18"
                                    TextColor="Black"/>
                         </Frame>
                     </toolkit:Expander.Header>
-                    <Label Text="List of discounts..." Padding="10"/>
+                    <CollectionView x:Name="DiscountsCollection" Margin="10,0,10,10">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                    <Frame BorderColor="LightGray"
+                       CornerRadius="8"
+                       Padding="10"
+                       Margin="5">
+                                        <VerticalStackLayout>
+                                            <Label Text="{Binding ProductName}" FontSize="16" FontAttributes="Bold"/>
+                                            <Label Text="{Binding Brand}" FontSize="14" />
+                                            <Label Text="{Binding StoreName}" FontSize="13" TextColor="Gray"/>
+                                        <HorizontalStackLayout Spacing="8">
+                                            <Label Text="{Binding Price, StringFormat='Tavahind: {0:C}'}"
+                                   FontSize="14"
+                                   TextDecorations="Strikethrough"
+                                   TextColor="Gray"/>
+                                            <Label Text="{Binding Discount, StringFormat='Soodushind: {0:C}'}"
+                                   FontSize="14"
+                                   TextColor="Red"
+                                   FontAttributes="Bold"/>
+                                        </HorizontalStackLayout>    
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
                 </toolkit:Expander>
 
                 <!-- Teine Expander -->
@@ -67,12 +93,12 @@
                                HasShadow="True"
                                Padding="10"
                                Margin="0">
-                            <Label Text="Show nearby stores"
+                            <Label Text="Kuva lähedalasuvad kauplused"
                                    FontSize="18"
                                    TextColor="Black"/>
                         </Frame>
                     </toolkit:Expander.Header>
-                    <Label Text="Nearby stores..." Padding="10"/>
+                    <Label Text="Lähedal asuvad kauplused..." Padding="10"/>
                 </toolkit:Expander>
 
                 <!-- Поисковая строка -->
@@ -110,16 +136,26 @@
                                                     <VerticalStackLayout>
                                                         <Label Text="{Binding Brand}" 
                                                FontSize="16" />
-                                                        <Label Text="{Binding Price, StringFormat='Hind: {0:C}'}" 
-                                               FontSize="16" 
-                                               TextColor="Green"/>
-                                                        <Label Text="{Binding Discount, StringFormat='Soodushind: {0:C}'}" 
-                                               FontSize="14" 
-                                               TextColor="Red" 
-                                               IsVisible="{Binding Discount, Converter={StaticResource NullToVisibilityConverter}}" />
+                                                        <HorizontalStackLayout Spacing="8">
+                                                            <Label Text="{Binding Price, StringFormat='Tavahind: {0:C}'}" 
+                                                               FontSize="16" 
+                                                               TextDecorations="Strikethrough"
+                                                               TextColor="Gray"
+                                                               IsVisible="{Binding Discount, Converter={StaticResource NullToVisibilityConverter}}" />
+                                                            <Label Text="{Binding Discount, StringFormat='Soodushind: {0:C}'}" 
+                                                               FontSize="16" 
+                                                               FontAttributes="Bold"
+                                                               TextColor="Red"
+                                                               IsVisible="{Binding Discount, Converter={StaticResource NullToVisibilityConverter}}"/>
+                                                            </HorizontalStackLayout>
+                                                            <Label Text="{Binding Price, StringFormat='Hind: {0:C}'}" 
+                                                                FontSize="16" 
+                                                                TextColor="Green"
+                                                                IsVisible="{Binding Discount, Converter={StaticResource InverseBoolConverter}}"/>
+
                                                         <Label Text="{Binding StoreName}" 
-                                               FontSize="14" 
-                                               TextColor="Gray" />
+                                                            FontSize="14" 
+                                                            TextColor="Gray" />
                                                     </VerticalStackLayout>
                                                 </Frame>
                                             </DataTemplate>

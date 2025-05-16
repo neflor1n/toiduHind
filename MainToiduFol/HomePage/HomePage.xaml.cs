@@ -33,6 +33,8 @@ namespace toiduHind.MainToiduFol.HomePage
             {
                 // Загружаем первую категорию из списка
                 var categories = await App.Database.GetAllCategoriesAsync();
+                await LoadDiscountsAsync();
+
                 if (categories != null && categories.Count > 0)
                 {
                     await LoadProductsByCategoryAsync(categories[0].Name);
@@ -319,6 +321,33 @@ namespace toiduHind.MainToiduFol.HomePage
 
             Console.WriteLine($"{TAG}: Found {countMatches} matches in current category");
             ProductsCollection.ItemsSource = filteredProducts;
+        }
+
+
+        private async Task LoadDiscountsAsync()
+        {
+            var allPrices = await App.Database.GetAllPricesAsync();
+            var allProducts = await App.Database.GetAllProductsAsync();
+            var allStores = await App.Database.GetAllStoresAsync();
+
+            var discountedItems = allPrices
+                .Where(p => p.DiscountPrice != null && p.DiscountPrice < p.CurrentPrice)
+                .Select(p =>
+                {
+                    var product = allProducts.FirstOrDefault(prod => prod.Id == p.ProductId);
+                    var store = allStores.FirstOrDefault(s => s.Id == p.StoreId);
+                    return new
+                    {
+                        ProductName = product?.Name ?? "Tundmatu toode",
+                        Brand = product?.Brand ?? "",
+                        StoreName = store?.Name ?? "Tundmatu pood",
+                        Price = p.CurrentPrice,
+                        Discount = p.DiscountPrice
+                    };
+                })
+                .ToList();
+
+            DiscountsCollection.ItemsSource = discountedItems;
         }
 
 
