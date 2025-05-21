@@ -1,4 +1,5 @@
 ﻿using toiduHind.DatabaseModels;
+using toiduHind.MainToiduFol.MapPage ;
 
 namespace toiduHind.MainToiduFol.HomePage
 {
@@ -136,18 +137,18 @@ namespace toiduHind.MainToiduFol.HomePage
                 var price = prices.FirstOrDefault(p => p.ProductId == product.Id);
                 var store = stores.FirstOrDefault(s => s.Id == price?.StoreId);
 
-                return new
+                return new ProductVariantModel
                 {
                     ProductId = product.Id,
                     ProductName = product.Name,
-                    ProductNameLower = product.Name.ToLowerInvariant(),
                     Brand = product.Brand,
-                    StoreId = store?.Id ?? 0,
                     StoreName = store?.Name ?? "Tundmatu pood",
-                    Price = price?.CurrentPrice ?? 0,
+                    Price = (decimal)(price?.CurrentPrice ?? 0),
                     Discount = price?.DiscountPrice
+
                 };
             })
+
             .GroupBy(v => new { NameLower = v.ProductNameLower, v.Brand, v.StoreId })
             .Select(g => g.First())
             .ToList();
@@ -177,6 +178,43 @@ namespace toiduHind.MainToiduFol.HomePage
             }
         }
 
+
+
+        private async void OnAddToBasketClicked(object sender, EventArgs e)
+        {
+            if (sender is ImageButton button && button.CommandParameter is ProductVariantModel variant)
+            {
+                string result = await DisplayPromptAsync("Kogus", $"Kui mitu {variant.ProductName} soovid lisada?", initialValue: "1", keyboard: Keyboard.Numeric);
+
+                if (!int.TryParse(result, out int quantity) || quantity <= 0)
+                {
+                    await DisplayAlert("Viga", "Sisestatud kogus on vigane.", "OK");
+                    return;
+                }
+
+                await App.Database.AddToBasketAsync(new BasketItem
+                {
+                    ProductId = variant.ProductId,
+                    ProductName = variant.ProductName,
+                    Brand = variant.Brand,
+                    StoreName = variant.StoreName,
+                    Price = (double)(variant.Discount ?? variant.Price),
+                    Quantity = quantity
+                });
+
+                await DisplayAlert("Lisatud", $"{variant.ProductName} x{quantity} lisati korvi.", "OK");
+            }
+            else
+            {
+                Console.WriteLine("CommandParameter is null or wrong type");
+            }
+        }
+
+
+        private async void OnMapClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MapPage.MapPage());
+        }
 
 
 
@@ -244,6 +282,12 @@ namespace toiduHind.MainToiduFol.HomePage
         {
             await HideMenu();
             await Navigation.PushAsync(new SettingsPage.SettingsPage(_loggedInUser));
+        }
+        
+        private async void OnShoppingBasketButtonClicked(object sender, EventArgs e)
+        {
+            await HideMenu();
+            await Navigation.PushAsync(new BasketPage.BasketPage(_loggedInUser));
         }
 
         private void OnSearchButtonPressed(object sender, EventArgs e)
@@ -350,6 +394,7 @@ namespace toiduHind.MainToiduFol.HomePage
             DiscountsCollection.ItemsSource = discountedItems;
         }
 
+        
 
     }
 }

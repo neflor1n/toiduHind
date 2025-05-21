@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using CommunityToolkit.Maui.Maps;
 
 namespace toiduHind;
 
@@ -10,11 +11,12 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-            .UseMauiCommunityToolkit();
-			
+            .UseMauiCommunityToolkit()
+            .UseMauiMaps();
+
 
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
 		return builder.Build();

@@ -20,6 +20,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <ImageButton Source="menu.png"
@@ -35,7 +36,21 @@
                    Text="Tere, {name}"  
                    TextColor="White"
                    FontSize="20"
+                   
                    VerticalTextAlignment="Center"/>
+            
+            
+            <!--Shopping basket-->
+            <ImageButton Source="shopping_basket_white.png"
+                            x:Name="ShoppingBasketButton"
+                            Clicked="OnShoppingBasketButtonClicked"
+                            BackgroundColor="Transparent"
+                            WidthRequest="30"
+                            HeightRequest="30"
+                            HorizontalOptions="Start"   
+                            VerticalOptions="Center"
+                            Grid.Column="3"
+                            Margin="0,0,10,0"/>
 
         </Grid>
 
@@ -98,7 +113,13 @@
                                    TextColor="Black"/>
                         </Frame>
                     </toolkit:Expander.Header>
-                    <Label Text="Lähedal asuvad kauplused..." Padding="10"/>
+                    <Button Text="Vaata kaarti"
+                        Clicked="OnMapClicked"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        CornerRadius="8"
+                        Padding="10" />
+
                 </toolkit:Expander>
 
                 <!-- Поисковая строка -->
@@ -123,46 +144,60 @@
                                FontSize="18" 
                                FontAttributes="Bold" />
                                     </Frame>
-                                </toolkit:Expander.Header>
-                                <VerticalStackLayout Padding="10" Spacing="8">
-                                    <CollectionView ItemsSource="{Binding Variants}" 
-                                    SelectionMode="None">
-                                        <CollectionView.ItemTemplate>
-                                            <DataTemplate>
-                                                <Frame BorderColor="LightGray" 
-                                       CornerRadius="5" 
-                                       Padding="8" 
-                                       Margin="3">
-                                                    <VerticalStackLayout>
-                                                        <Label Text="{Binding Brand}" 
-                                               FontSize="16" />
-                                                        <HorizontalStackLayout Spacing="8">
-                                                            <Label Text="{Binding Price, StringFormat='Tavahind: {0:C}'}" 
-                                                               FontSize="16" 
-                                                               TextDecorations="Strikethrough"
-                                                               TextColor="Gray"
-                                                               IsVisible="{Binding Discount, Converter={StaticResource NullToVisibilityConverter}}" />
-                                                            <Label Text="{Binding Discount, StringFormat='Soodushind: {0:C}'}" 
-                                                               FontSize="16" 
-                                                               FontAttributes="Bold"
-                                                               TextColor="Red"
-                                                               IsVisible="{Binding Discount, Converter={StaticResource NullToVisibilityConverter}}"/>
-                                                            </HorizontalStackLayout>
-                                                            <Label Text="{Binding Price, StringFormat='Hind: {0:C}'}" 
-                                                                FontSize="16" 
-                                                                TextColor="Green"
-                                                                IsVisible="{Binding Discount, Converter={StaticResource InverseBoolConverter}}"/>
+                                    </toolkit:Expander.Header>
+                                        <VerticalStackLayout Padding="10" Spacing="8">
+                                            <CollectionView ItemsSource="{Binding Variants}" 
+                                               SelectionMode="None">
+                                                <CollectionView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Frame BorderColor="LightGray" 
+                                                            CornerRadius="5" 
+                                                            Padding="8" 
+                                                            Margin="3">  
+                                                                <VerticalStackLayout>
+                                                                    <Label Text="{Binding Brand}" 
+                                                                        FontSize="16" />
+                                                                    <HorizontalStackLayout Spacing="8">
+                                                                        <Label Text="{Binding Price, StringFormat='Tavahind: {0:C}'}" 
+                                                                           FontSize="16" 
+                                                                           TextDecorations="Strikethrough"
+                                                                           TextColor="Gray"
+                                                                           IsVisible="{Binding Discount, Converter={StaticResource NullToVisibilityConverter}}" />
+                                                                        <Label Text="{Binding Discount, StringFormat='Soodushind: {0:C}'}" 
+                                                                           FontSize="16" 
+                                                                           FontAttributes="Bold"
+                                                                           TextColor="Red"
+                                                                           IsVisible="{Binding Discount, Converter={StaticResource NullToVisibilityConverter}}"/>
+                                                                        </HorizontalStackLayout>
+                                                                        <Label Text="{Binding Price, StringFormat='Hind: {0:C}'}" 
+                                                                            FontSize="16" 
+                                                                            TextColor="Green"
+                                                                            IsVisible="{Binding Discount, Converter={StaticResource InverseBoolConverter}}"/>
 
-                                                        <Label Text="{Binding StoreName}" 
-                                                            FontSize="14" 
-                                                            TextColor="Gray" />
+                                                                    <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+                                                                        <Label Text="{Binding StoreName}" 
+                                                                                    FontSize="14" 
+                                                                                    TextColor="Gray"
+                                                                                    VerticalOptions="Center" />
+
+                                                                        
+                                                                        <ImageButton Source="add.png"
+                                                                                            WidthRequest="24"
+                                                                                            HeightRequest="24"
+                                                                                            BackgroundColor="Transparent"
+                                                                                            VerticalOptions="Center"
+                                                                                            Grid.Column="1"
+                                                                                            Clicked="OnAddToBasketClicked"
+                                                                                            CommandParameter="{Binding .}" />
+                                                                    </Grid> 
+
                                                     </VerticalStackLayout>
-                                                </Frame>
-                                            </DataTemplate>
-                                        </CollectionView.ItemTemplate>
-                                    </CollectionView>
-                                </VerticalStackLayout>
-                            </toolkit:Expander>
+                                                        </Frame>
+                                                    </DataTemplate>
+                                                </CollectionView.ItemTemplate>
+                                            </CollectionView>
+                                        </VerticalStackLayout>
+                                </toolkit:Expander>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

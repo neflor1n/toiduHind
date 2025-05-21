@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="toiduHind.MainToiduFol.BasketPage.BasketPage"
+             Title="🛒 Ostukorv"
+             BackgroundColor="#f9f9f9">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label Text="Sinu ostukorv"
+               FontSize="24"
+               FontAttributes="Bold"
+               TextColor="#333" />
+
+        <CollectionView x:Name="BasketCollection">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="#ddd"
+       BackgroundColor="White"
+       CornerRadius="12"
+       Padding="15"
+       Margin="0,5"
+       HasShadow="True">
+                        <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,Auto" ColumnSpacing="10">
+
+                            <!-- Название и бренд -->
+                            <VerticalStackLayout Grid.Row="0" Grid.ColumnSpan="2" Spacing="2">
+                                <Label Text="{Binding ProductName}"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#222"/>
+                                <Label Text="{Binding Brand}"
+                   FontSize="14"
+                   TextColor="#666"/>
+                            </VerticalStackLayout>
+
+                            <!-- Магазин -->
+                            <Label Text="{Binding StoreName}"
+               Grid.Row="1"
+               Grid.ColumnSpan="2"
+               FontSize="13"
+               TextColor="#999"
+               Margin="0,5,0,0"/>
+
+                            <!-- Цена + Кол-во -->
+                            <VerticalStackLayout Grid.Row="2" Grid.Column="0" Spacing="4" VerticalOptions="Center">
+                                <Label Text="{Binding TotalPriceFormatted}" FontSize="14" TextColor="#28a745"/>
+
+                                <Label Text="{Binding Quantity, StringFormat='Kogus: {0}'}"
+                   FontSize="14"
+                   TextColor="#000"/>
+                            </VerticalStackLayout>
+
+                            <!-- Кнопки -->
+                            <HorizontalStackLayout Grid.Row="2" Grid.Column="1"
+                               Spacing="12"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center">
+                                <ImageButton Source="minus.png"
+                         WidthRequest="24"
+                         HeightRequest="24"
+                         BackgroundColor="Transparent"
+                         Aspect="AspectFit"
+                         Clicked="OnDecreaseQuantityClicked"
+                         CommandParameter="{Binding .}"/>
+                                <ImageButton Source="plus.png"
+                         WidthRequest="24"
+                         HeightRequest="24"
+                         BackgroundColor="Transparent"
+                         Aspect="AspectFit"
+                         Clicked="OnIncreaseQuantityClicked"
+                         CommandParameter="{Binding .}"/>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Frame>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Итого и кнопка -->
+        <VerticalStackLayout Padding="0,10" Spacing="12">
+            <Label x:Name="TotalLabel"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#111"
+                   HorizontalOptions="End"
+                   Text="Kokku: 0.00 €" />
+
+            <Button Text="Tühjenda kogu ostukorv"
+                    BackgroundColor="#dc3545"
+                    TextColor="White"
+                    FontSize="16"
+                    Clicked="OnClearBasketClicked"
+                    CornerRadius="8"
+                    Padding="12,6"/>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
+

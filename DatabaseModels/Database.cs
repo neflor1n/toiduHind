@@ -21,7 +21,7 @@ public class Database
         _db.CreateTableAsync<Category>().Wait();
         _db.CreateTableAsync<Store>().Wait();
         _db.CreateTableAsync<Price>().Wait();
-        _db.CreateTableAsync<Favorite>().Wait();
+        _db.CreateTableAsync<BasketItem>().Wait();
     }
 
     public async Task<bool> RegisterUser(User user)
@@ -415,5 +415,46 @@ public class Database
     }
 
 
+
+    // BASKET
+    public Task<List<BasketItem>> GetAllBasketItemsAsync()
+    {
+        return _db.Table<BasketItem>().ToListAsync();
+    }
+
+    public async Task AddToBasketAsync(BasketItem item)
+    {
+        var existing = await _db.Table<BasketItem>()
+            .FirstOrDefaultAsync(i => i.ProductId == item.ProductId && i.Brand == item.Brand && i.StoreName == item.StoreName);
+
+        if (existing != null)
+        {
+            existing.Quantity += item.Quantity;
+            await _db.UpdateAsync(existing);
+        }
+        else
+        {
+            await _db.InsertAsync(item);
+        }
+    }
+
+    public Task DeleteBasketItemAsync(int id)
+    {
+        return _db.DeleteAsync<BasketItem>(id);
+    }
+
+    public Task UpdateBasketItemAsync(BasketItem item)
+    {
+        return _db.UpdateAsync(item);
+    }
+    
+    public Task ClearBasketAsync()
+    {
+        return _db.DeleteAllAsync<BasketItem>();
+    }
+
+
+
 }
+
 
