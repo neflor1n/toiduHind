@@ -17,31 +17,29 @@ public partial class MapPage : ContentPage
     {
         base.OnAppearing();
 
+        await App.Database.ImportStoresFromCsvAsync();
         _allStores = await App.Database.GetAllStoresAsync();
 
-        var storeNames = _allStores
-            .Where(s => s.Latitude != 0 && s.Longitude != 0)
-            .Select(s => s.Name)
-            .Distinct()
-            .OrderBy(n => n)
-            .ToList();
 
+        if (_allStores == null || !_allStores.Any(s => s.Latitude != 0 && s.Longitude != 0))
+        {
+            await DisplayAlert("Teade", "Ühtegi poodi ei leitud kaardile lisamiseks.", "OK");
+            return;
+        }
 
-        storeNames.Insert(0, "Kõik poed");
-
-
-        UpdateMapPins(storeNames[0]);
+        // Отображаем сразу все магазины
+        UpdateMapPins();
     }
 
-    private void UpdateMapPins(string storeName)
+    private void UpdateMapPins()
     {
         MainMap.Pins.Clear();
 
-        var filteredStores = storeName == "Kõik poed"
-            ? _allStores.Where(s => s.Latitude != 0 && s.Longitude != 0).ToList()
-            : _allStores.Where(s => s.Name == storeName && s.Latitude != 0 && s.Longitude != 0).ToList();
+        var storesWithCoords = _allStores
+            .Where(s => s.Latitude != 0 && s.Longitude != 0)
+            .ToList();
 
-        foreach (var store in filteredStores)
+        foreach (var store in storesWithCoords)
         {
             var pin = new Pin
             {
@@ -53,9 +51,8 @@ public partial class MapPage : ContentPage
             MainMap.Pins.Add(pin);
         }
 
-        // Центрируем на Таллинн
+        // Центрируем карту на Таллинне
         var tallinnCenter = new Location(59.4370, 24.7535);
         MainMap.MoveToRegion(MapSpan.FromCenterAndRadius(tallinnCenter, Distance.FromKilometers(10)));
     }
-
 }

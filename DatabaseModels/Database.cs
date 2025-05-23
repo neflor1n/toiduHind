@@ -57,6 +57,7 @@ public class Database
         try
         {
             string filePath = Path.Combine(FileSystem.AppDataDirectory, "stores.csv");
+
             if (!File.Exists(filePath))
             {
                 using var stream = await FileSystem.OpenAppPackageFileAsync("stores.csv");
@@ -65,38 +66,49 @@ public class Database
             }
 
             using var reader = new StreamReader(filePath);
-            var header = await reader.ReadLineAsync(); // Пропустить заголовок
+            var header = await reader.ReadLineAsync(); // пропустить заголовок
 
             int countAdded = 0;
+
             while (!reader.EndOfStream)
             {
                 var line = await reader.ReadLineAsync();
                 var parts = line.Split(',');
 
-                if (parts.Length < 3) continue;
+                if (parts.Length < 4)
+                    continue;
+
+                var name = parts[0].Trim();
+                var logo = parts[1].Trim();
+
+                if (!double.TryParse(parts[2], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double lat)) continue;
+                if (!double.TryParse(parts[3], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double lon)) continue;
 
                 var store = new Store
                 {
-                    Name = parts[0].Trim(),
-                    LogoFileName = parts[1].Trim(),
-                    Location = parts[2].Trim()
+                    Name = name,
+                    LogoFileName = logo,
+                    Latitude = lat,
+                    Longitude = lon,
+                    Location = $"{lat},{lon}"
                 };
 
-                var existingStore = await _db.Table<Store>().Where(s => s.Name == store.Name).FirstOrDefaultAsync();
-                if (existingStore == null)
+                var existing = await _db.Table<Store>().Where(s => s.Name == store.Name).FirstOrDefaultAsync();
+                if (existing == null)
                 {
                     await _db.InsertAsync(store);
                     countAdded++;
                 }
             }
 
-            await Application.Current.MainPage.DisplayAlert("Успех", $"{countAdded} магазинов импортировано.", "OK");
+            await Application.Current.MainPage.DisplayAlert("Imporditud", $"{countAdded} poodi lisatud!", "OK");
         }
         catch (Exception ex)
         {
-            await Application.Current.MainPage.DisplayAlert("Ошибка", $"Не удалось импортировать магазины: {ex.Message}", "OK");
+            await Application.Current.MainPage.DisplayAlert("Viga", $"Import ebaõnnestus: {ex.Message}", "OK");
         }
     }
+
 
 
 
@@ -449,9 +461,9 @@ public class Database
     }
     
     public Task ClearBasketAsync()
-    {
-        return _db.DeleteAllAsync<BasketItem>();
-    }
+{
+    return _db.DeleteAllAsync<BasketItem>();
+}
 
 
 
